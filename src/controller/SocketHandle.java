@@ -22,13 +22,13 @@ import java.io.BufferedWriter;
  * @author Admin
  */
 public class SocketHandle implements Runnable {
+
     private BufferedWriter outputWriter;
     private Socket socketOfClient;
     private OnlineUsersFrame onlineUsersFrame;
     private HomePageFrm homePageFrm;
     private Socket socket;
-    
-   
+
     public List<User> getListUser(String[] message) {
         List<User> friend = new ArrayList<>();
         for (int i = 1; i < message.length; i = i + 4) {
@@ -91,63 +91,59 @@ public class SocketHandle implements Runnable {
                     System.out.println("Đăng nhập thành công");
                     Client.closeAllViews();
                     Client.user = getUserFromString(1, messageSplit);
-                    homePageFrm = new HomePageFrm();
-                     homePageFrm.setVisible(true);
-//                    Client.openView(Client.View.HOMEPAGE);
+                    Client.openView(Client.View.HOMEPAGE);
                 }
                 // Xử lý danh sách người dùng online
- 
 
-                    if (messageSplit[0].equals("online-users")) {
-        System.out.println("Received online users message: " + message);  // Debug output
-        String[] users = messageSplit[1].split(";");
-        List<User> onlineUsers = new ArrayList<>();
+                if (messageSplit[0].equals("online-users")) {
+                    System.out.println("Received online users message: " + message);  // Debug output
+                    String[] users = messageSplit[1].split(";");
+                    List<User> onlineUsers = new ArrayList<>();
 
- for (String userInfo : users) {
-        String[] userParts = userInfo.split(":");
-        if (userParts.length >= 2) {  // Đảm bảo có đủ dữ liệu nickname và avatar
-            String avatar = userParts[0].trim();
+                    for (String userInfo : users) {
+                        String[] userParts = userInfo.split(":");
+                        if (userParts.length >= 2) {  // Đảm bảo có đủ dữ liệu nickname và avatar
+                            String avatar = userParts[0].trim();
 
-            String nickname = userParts[1].trim();
+                            String nickname = userParts[1].trim();
 
-            // Khởi tạo đối tượng User
-            User user = new User(nickname,"", nickname, avatar);  
-            onlineUsers.add(user);
-        } else {
-            System.out.println("Dữ liệu người dùng không hợp lệ: " + userInfo);
-        }
-    }
+                            // Khởi tạo đối tượng User
+                            User user = new User(nickname, "", nickname, avatar);
+                            onlineUsers.add(user);
+                        } else {
+                            System.out.println("Dữ liệu người dùng không hợp lệ: " + userInfo);
+                        }
+                    }
 
+                    try {
+                        // Kiểm tra nếu homePageFrm đã được khởi tạo và hiển thị
+                        if (homePageFrm != null && homePageFrm.isVisible()) {
+                            homePageFrm.updateOnlineUsers(onlineUsers);
+                            System.out.println("Danh sách người dùng đã được cập nhật");
+                        } else {
 
-            try {
-                // Kiểm tra nếu homePageFrm đã được khởi tạo và hiển thị
-                if (homePageFrm != null && homePageFrm.isVisible()) {
-                    homePageFrm.updateOnlineUsers(onlineUsers);
-                    System.out.println("Danh sách người dùng đã được cập nhật");
-                } else {
+                            homePageFrm = new HomePageFrm();
+                            Client.closeAllViews();
 
-                     homePageFrm = new HomePageFrm();
-                     Client.closeAllViews();
+                            homePageFrm.updateOnlineUsers(onlineUsers);
+                            System.out.println("homePageFrm chưa được khởi tạo hoặc không hiển thị");
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();  // Debugging để xem lỗi nếu xảy ra
+                    }
 
-             homePageFrm.updateOnlineUsers(onlineUsers);
-                    System.out.println("homePageFrm chưa được khởi tạo hoặc không hiển thị");
+                    // Hiển thị danh sách người dùng online trong giao diện mới
+                    SwingUtilities.invokeLater(() -> {
+                        // Kiểm tra nếu onlineUsersFrame chưa được khởi tạo hoặc không còn hiển thị
+                        if (onlineUsersFrame == null || !onlineUsersFrame.isVisible()) {
+                            onlineUsersFrame = new OnlineUsersFrame();
+
+                            onlineUsersFrame.dispose();
+                        }
+                        // Cập nhật danh sách người dùng online
+                        onlineUsersFrame.updateOnlineUsers(onlineUsers);
+                    });
                 }
-            } catch (Exception e) {
-                e.printStackTrace();  // Debugging để xem lỗi nếu xảy ra
-            }
-
-                // Hiển thị danh sách người dùng online trong giao diện mới
-            SwingUtilities.invokeLater(() -> {
-                // Kiểm tra nếu onlineUsersFrame chưa được khởi tạo hoặc không còn hiển thị
-                if (onlineUsersFrame == null || !onlineUsersFrame.isVisible()) {
-                    onlineUsersFrame = new OnlineUsersFrame();
-
-                    onlineUsersFrame.dispose();
-                }
-                // Cập nhật danh sách người dùng online
-                onlineUsersFrame.updateOnlineUsers(onlineUsers);
-            });
-            }
 
                 //Thông tin tài khoản sai
                 if (messageSplit[0].equals("wrong-user")) {
@@ -219,12 +215,12 @@ public class SocketHandle implements Runnable {
                         rooms.add("Phòng " + messageSplit[i]);
                         passwords.add(messageSplit[i + 1]);
                     }
-//                    Client.roomListFrm.updateRoomList(rooms, passwords);
+                    Client.roomListFrm.updateRoomList(rooms, passwords);
                 }
                 if (messageSplit[0].equals("return-friend-list")) {
-//                    if (Client.friendListFrm != null) {
-//                        Client.friendListFrm.updateFriendList(getListUser(messageSplit));
-//                    }
+                    if (Client.friendListFrm != null) {
+                        Client.friendListFrm.updateFriendList(getListUser(messageSplit));
+                    }
                 }
 //                if (messageSplit[0].equals("go-to-room")) {
 //                    System.out.println("Vào phòng");
@@ -260,11 +256,11 @@ public class SocketHandle implements Runnable {
 //                }
                 //Tạo phòng và server trả về tên phòng
                 if (messageSplit[0].equals("your-created-room")) {
-//                    Client.closeAllViews();
-//                    Client.openView(Client.View.WAITING_ROOM);
-//                    Client.waitingRoomFrm.setRoomName(messageSplit[1]);
-//                    if (messageSplit.length == 3)
-//                        Client.waitingRoomFrm.setRoomPassword("Mật khẩu phòng: " + messageSplit[2]);
+                    Client.closeAllViews();
+                    Client.openView(Client.View.WAITING_ROOM);
+                    Client.waitingRoomFrm.setRoomName(messageSplit[1]);
+                    if (messageSplit.length == 3)
+                        Client.waitingRoomFrm.setRoomPassword("Mật khẩu phòng: " + messageSplit[2]);
                 }
                 //Xử lý yêu cầu kết bạn tới
                 if (messageSplit[0].equals("make-friend-request")) {

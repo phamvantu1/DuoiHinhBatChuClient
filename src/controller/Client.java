@@ -19,13 +19,13 @@ public class Client {
     public static LoginFrm loginFrm;
     public static RegisterFrm registerFrm;
     public static HomePageFrm homePageFrm;
-//    public static RoomListFrm roomListFrm;
-//    public static FriendListFrm friendListFrm;
+    public static RoomListFrm roomListFrm;
+    public static FriendListFrm friendListFrm;
 //    public static FindRoomFrm findRoomFrm;
-//    public static WaitingRoomFrm waitingRoomFrm;
+    public static WaitingRoomFrm waitingRoomFrm;
 //    public static GameClientFrm gameClientFrm;
-//    public static CreateRoomPasswordFrm createRoomPasswordFrm;
-//    public static JoinRoomPasswordFrm joinRoomPasswordFrm;
+    public static CreateRoomPasswordFrm createRoomPasswordFrm;
+    public static JoinRoomPasswordFrm joinRoomPasswordFrm;
 //    public static CompetitorInfoFrm competitorInfoFrm;
 //    public static RankFrm rankFrm;
 //    public static GameNoticeFrm gameNoticeFrm;
@@ -38,17 +38,17 @@ public class Client {
     }
 
     public static JFrame getVisibleJFrame() {
-//        if (roomListFrm != null && roomListFrm.isVisible())
-//            return roomListFrm;
-//        if (friendListFrm != null && friendListFrm.isVisible()) {
-//            return friendListFrm;
-//        }
-//        if (createRoomPasswordFrm != null && createRoomPasswordFrm.isVisible()) {
-//            return createRoomPasswordFrm;
-//        }
-//        if (joinRoomPasswordFrm != null && joinRoomPasswordFrm.isVisible()) {
-//            return joinRoomPasswordFrm;
-//        }
+        if (roomListFrm != null && roomListFrm.isVisible())
+            return roomListFrm;
+        if (friendListFrm != null && friendListFrm.isVisible()) {
+            return friendListFrm;
+        }
+        if (createRoomPasswordFrm != null && createRoomPasswordFrm.isVisible()) {
+            return createRoomPasswordFrm;
+        }
+        if (joinRoomPasswordFrm != null && joinRoomPasswordFrm.isVisible()) {
+            return joinRoomPasswordFrm;
+        }
 //        if (rankFrm != null && rankFrm.isVisible()) {
 //            return rankFrm;
 //        }
@@ -70,27 +70,27 @@ public class Client {
                     homePageFrm = new HomePageFrm();
                     homePageFrm.setVisible(true);
                     break;
-//                case ROOM_LIST:
-//                    roomListFrm = new RoomListFrm();
-//                    roomListFrm.setVisible(true);
-//                    break;
-//                case FRIEND_LIST:
-//                    friendListFrm = new FriendListFrm();
-//                    friendListFrm.setVisible(true);
-//                    break;
+                case ROOM_LIST:
+                    roomListFrm = new RoomListFrm();
+                    roomListFrm.setVisible(true);
+                    break;
+                case FRIEND_LIST:
+                    friendListFrm = new FriendListFrm();
+                    friendListFrm.setVisible(true);
+                    break;
 //                case FIND_ROOM:
 //                    findRoomFrm = new FindRoomFrm();
 //                    findRoomFrm.setVisible(true);
 //                    break;
-//                case WAITING_ROOM:
-//                    waitingRoomFrm = new WaitingRoomFrm();
-//                    waitingRoomFrm.setVisible(true);
-//                    break;
+                case WAITING_ROOM:
+                    waitingRoomFrm = new WaitingRoomFrm();
+                    waitingRoomFrm.setVisible(true);
+                    break;
 //
-//                case CREATE_ROOM_PASSWORD:
-//                    createRoomPasswordFrm = new CreateRoomPasswordFrm();
-//                    createRoomPasswordFrm.setVisible(true);
-//                    break;
+                case CREATE_ROOM_PASSWORD:
+                    createRoomPasswordFrm = new CreateRoomPasswordFrm();
+                    createRoomPasswordFrm.setVisible(true);
+                    break;
 //                case RANK:
 //                    rankFrm = new RankFrm();
 //                    rankFrm.setVisible(true);
@@ -107,20 +107,20 @@ public class Client {
     }
 
     public static void openView(View viewName, int arg1, String arg2) {
-//        if (viewName != null) {
-//            switch (viewName) {
-//                case JOIN_ROOM_PASSWORD:
-//                    joinRoomPasswordFrm = new JoinRoomPasswordFrm(arg1, arg2);
-//                    joinRoomPasswordFrm.setVisible(true);
-//                    break;
+        if (viewName != null) {
+            switch (viewName) {
+                case JOIN_ROOM_PASSWORD:
+                    joinRoomPasswordFrm = new JoinRoomPasswordFrm(arg1, arg2);
+                    joinRoomPasswordFrm.setVisible(true);
+                    break;
 //                case FRIEND_REQUEST:
 //                    friendRequestFrm = new FriendRequestFrm(arg1, arg2);
 //                    friendRequestFrm.setVisible(true);
 //            }
-//        }
+        }
     }
 
-    public static void openView(View viewName, User competitor, int room_ID, int isStart, String competitorIP) {
+//    public static void openView(View viewName, User competitor, int room_ID, int isStart, String competitorIP) {
 //        if (viewName == View.GAME_CLIENT) {
 //            gameClientFrm = new GameClientFrm(competitor, room_ID, isStart, competitorIP);
 //            gameClientFrm.setVisible(true);
@@ -160,30 +160,30 @@ public class Client {
                 case HOMEPAGE:
                     homePageFrm.dispose();
                     break;
-//                case ROOM_LIST:
-//                    roomListFrm.dispose();
-//                    break;
-//                case FRIEND_LIST:
-//                    friendListFrm.stopAllThread();
-//                    friendListFrm.dispose();
-//                    break;
+                case ROOM_LIST:
+                    roomListFrm.dispose();
+                    break;
+                case FRIEND_LIST:
+                    friendListFrm.stopAllThread();
+                    friendListFrm.dispose();
+                    break;
 //                case FIND_ROOM:
 //                    findRoomFrm.stopAllThread();
 //                    findRoomFrm.dispose();
 //                    break;
-//                case WAITING_ROOM:
-//                    waitingRoomFrm.dispose();
-//                    break;
+                case WAITING_ROOM:
+                    waitingRoomFrm.dispose();
+                    break;
 //                case GAME_CLIENT:
 //                    gameClientFrm.stopAllThread();
 //                    gameClientFrm.dispose();
 //                    break;
-//                case CREATE_ROOM_PASSWORD:
-//                    createRoomPasswordFrm.dispose();
-//                    break;
-//                case JOIN_ROOM_PASSWORD:
-//                    joinRoomPasswordFrm.dispose();
-//                    break;
+                case CREATE_ROOM_PASSWORD:
+                    createRoomPasswordFrm.dispose();
+                    break;
+                case JOIN_ROOM_PASSWORD:
+                    joinRoomPasswordFrm.dispose();
+                    break;
 //                case COMPETITOR_INFO:
 //                    competitorInfoFrm.dispose();
 //                    break;
@@ -211,22 +211,22 @@ public class Client {
         if (loginFrm != null) loginFrm.dispose();
         if (registerFrm != null) registerFrm.dispose();
         if (homePageFrm != null) homePageFrm.dispose();
-//        if (roomListFrm != null) roomListFrm.dispose();
-//        if (friendListFrm != null) {
-//            friendListFrm.stopAllThread();
-//            friendListFrm.dispose();
-//        }
+        if (roomListFrm != null) roomListFrm.dispose();
+        if (friendListFrm != null) {
+            friendListFrm.stopAllThread();
+            friendListFrm.dispose();
+        }
 //        if (findRoomFrm != null) {
 //            findRoomFrm.stopAllThread();
 //            findRoomFrm.dispose();
 //        }
-//        if (waitingRoomFrm != null) waitingRoomFrm.dispose();
+        if (waitingRoomFrm != null) waitingRoomFrm.dispose();
 //        if (gameClientFrm != null) {
 //            gameClientFrm.stopAllThread();
 //            gameClientFrm.dispose();
 //        }
-//        if (createRoomPasswordFrm != null) createRoomPasswordFrm.dispose();
-//        if (joinRoomPasswordFrm != null) joinRoomPasswordFrm.dispose();
+        if (createRoomPasswordFrm != null) createRoomPasswordFrm.dispose();
+        if (joinRoomPasswordFrm != null) joinRoomPasswordFrm.dispose();
 //        if (competitorInfoFrm != null) competitorInfoFrm.dispose();
 //        if (rankFrm != null) rankFrm.dispose();
 //        if (gameNoticeFrm != null) gameNoticeFrm.dispose();
@@ -244,7 +244,11 @@ public class Client {
         loginFrm = new LoginFrm();
         loginFrm.setVisible(true);
         socketHandle = new SocketHandle();
-        socketHandle.run();
+        Thread socketThread = new Thread(socketHandle);
+
+        // Bắt đầu luồng
+        socketThread.start();
+//        socketHandle.run();
     }
 
     public enum View {
