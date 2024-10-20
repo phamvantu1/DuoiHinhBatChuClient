@@ -109,9 +109,14 @@ public class SocketHandle implements Runnable {
             String avatar = userParts[0].trim();
 
             String nickname = userParts[1].trim();
+            String username = userParts[2].trim();
 
+            int numberOfGame =  Integer.parseInt(userParts[3].trim());
+            int numberOfWin = Integer.parseInt(userParts[4].trim());
+            int numberOfDraw = Integer.parseInt(userParts[5].trim());
+            int rank = Integer.parseInt(userParts[6].trim());
             // Khởi tạo đối tượng User
-            User user = new User(nickname,"", nickname, avatar);  
+            User user = new User(  username,  nickname,  avatar,  numberOfGame,  numberOfWin,  numberOfDraw, rank) ;
             onlineUsers.add(user);
         } else {
             System.out.println("Dữ liệu người dùng không hợp lệ: " + userInfo);

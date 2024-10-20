@@ -1,56 +1,168 @@
-///*
-// * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-// * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
-// */
+/////*
+//// * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+//// * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+//// */
 package view;
-
-
+//
+//import controller.Client;
 //import javax.swing.*;
+//import javax.swing.table.DefaultTableModel;
 //import java.awt.*;
+//import java.util.List;
+//import javax.swing.table.JTableHeader;
+//import javax.swing.table.TableCellRenderer;
+import model.User;
+//
+//import controller.Client;
+//import javax.swing.*;
+//import javax.swing.table.DefaultTableModel;
+//import javax.swing.event.MouseInputAdapter;
+//import java.awt.*;
+//import java.awt.event.MouseEvent;
 //import java.util.List;
 //import model.User;
 //
 //public class OnlineUsersFrame extends JFrame {
-//    private DefaultListModel<String> onlineUsersListModel; // Mô hình dữ liệu cho danh sách người dùng
-//    private JList<String> onlineUsersList; // Danh sách hiển thị người dùng online
+//    private JTable usersTable;
+//    private DefaultTableModel tableModel;
 //
 //    public OnlineUsersFrame() {
 //        setTitle("Danh sách người dùng online");
-//        setSize(300, 400);
-//        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Đóng cửa sổ sẽ không kết thúc chương trình
+//        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+//        setSize(400, 300);
+//        setLocationRelativeTo(null);
+//        setResizable(true); // Allow resizing
 //
-//        onlineUsersListModel = new DefaultListModel<>(); // Khởi tạo mô hình danh sách
-//        onlineUsersList = new JList<>(onlineUsersListModel); // Tạo danh sách từ mô hình
+//        // Set background color
+//        getContentPane().setBackground(new Color(240, 240, 240));
 //
-//        // Đặt JList vào JScrollPane để có thanh cuộn
-//        JScrollPane scrollPane = new JScrollPane(onlineUsersList);
-//        add(scrollPane, BorderLayout.CENTER); // Thêm thanh cuộn vào khung chính
+//        // Create a panel to hold the table
+//        JPanel panel = new JPanel(new BorderLayout());
+//        panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+//        panel.setBackground(new Color(255, 255, 255)); // Panel background color
 //
-//        setVisible(true); // Hiển thị cửa sổ
+//        // Create table model and add columns
+//        tableModel = new DefaultTableModel();
+//        tableModel.addColumn("Avatar");
+//        tableModel.addColumn("Nickname");
+//
+//        // Create table
+//        usersTable = new JTable(tableModel) {
+//            @Override
+//            public Class<?> getColumnClass(int columnIndex) {
+//                // Column 0 for ImageIcon
+//                return columnIndex == 0 ? ImageIcon.class : String.class;
+//            }
+//
+//            // Override method to set row color for better readability
+//            @Override
+//            public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
+//                Component c = super.prepareRenderer(renderer, row, column);
+//                if (row % 2 == 0) {
+//                    c.setBackground(new Color(230, 230, 255)); // Light blue for even rows
+//                } else {
+//                    c.setBackground(Color.WHITE); // White for odd rows
+//                }
+//                return c;
+//            }
+//        };
+//
+//        // Add a mouse listener to handle row clicks
+//        usersTable.addMouseListener(new MouseInputAdapter() {
+//            @Override
+//            public void mouseClicked(MouseEvent e) {
+//                int row = usersTable.getSelectedRow();
+//                if (row != -1) {
+//                    // Get the selected user
+//                    String nickname = (String) tableModel.getValueAt(row, 1);
+//                    // Fetch user details (you can modify this to get User object directly)
+//                    User user = fetchUserDetails(nickname);
+//                    // Open a new frame to display user details
+//                    new UserDetailsFrame(user).setVisible(true);
+//                }
+//            }
+//        });
+//
+//        // Set table properties
+//        usersTable.getColumnModel().getColumn(0).setPreferredWidth(90); // Avatar column width
+//        usersTable.getColumnModel().getColumn(1).setPreferredWidth(200); // Nickname column width
+//        usersTable.setRowHeight(90); // Row height for avatar size
+//
+//        // Customize table header
+//        JTableHeader tableHeader = usersTable.getTableHeader();
+//        tableHeader.setBackground(new Color(70, 130, 180)); // Header background color
+//        tableHeader.setForeground(Color.WHITE); // Header text color
+//        tableHeader.setFont(new Font("Arial", Font.BOLD, 14)); // Header font
+//
+//        // Add table to scroll pane
+//        JScrollPane scrollPane = new JScrollPane(usersTable);
+//        panel.add(scrollPane, BorderLayout.CENTER);
+//
+//        // Add panel to frame
+//        add(panel);
 //    }
-// 
-//    // Phương thức để cập nhật danh sách người dùng online
+//
 //    public void updateOnlineUsers(List<User> onlineUsers) {
-//          System.out.println("Updating online users: " + onlineUsers); 
-//        onlineUsersListModel.clear();  // Xóa danh sách cũ
+//        tableModel.setRowCount(0); // Clear old data
 //        for (User user : onlineUsers) {
-//            onlineUsersListModel.addElement(user.getNickname());  // Thêm từng người dùng vào danh sách
+//            // Load avatar and nickname into the table
+//            ImageIcon avatar = new ImageIcon("assets/avatar/" + user.getAvatar() + ".jpg");
+//            avatar = resizeImage(avatar, 90, 90); // Resize avatar
+//            tableModel.addRow(new Object[]{avatar, user.getNickname()});
 //        }
+//    }
+//
+//    private ImageIcon resizeImage(ImageIcon originalImage, int width, int height) {
+//        Image img = originalImage.getImage();
+//        Image newImg = img.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+//        return new ImageIcon(newImg);
+//    }
+//
+//    // Mock method to fetch user details based on nickname
+//    private User fetchUserDetails(String nickname) {
+//        // In a real application, you would fetch the user details from a database or API
+//        // Here you can create a User object with dummy data for demonstration
+//        return new User(nickname, "assets/avatar/default.jpg"); // Replace with actual logic
+//    }
+//
+//    public static void main(String[] args) {
+//        SwingUtilities.invokeLater(() -> {
+//            OnlineUsersFrame frame = new OnlineUsersFrame();
+//            frame.setVisible(true);
+//        });
+//    }
+//}
+//
+//// Create a new class to display user details
+//class UserDetailsFrame extends JFrame {
+//    private User user;
+//
+//    public UserDetailsFrame(User user) {
+//        this.user = user;
+//        setTitle("Thông tin người dùng: " + user.getNickname());
+//        setSize(300, 200);
+//        setLocationRelativeTo(null);
+//        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 //        
-//       // edit
-//        onlineUsersList.repaint();  // Vẽ lại danh sách để cập nhật hiển thị
+//        // Set layout and add components to display user details
+//        setLayout(new GridLayout(3, 1));
+//        add(new JLabel("Nickname: " + user.getNickname()));
+//        add(new JLabel("Avatar:"));
+//        add(new JLabel(new ImageIcon(new ImageIcon("assets/avatar/" + user.getAvatar()).getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH))));
 //    }
 //}
 
 
-
-import controller.Client;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.event.MouseInputAdapter;
 import java.awt.*;
+import java.awt.event.MouseEvent;
 import java.util.List;
-import model.User;
 
+// Main Frame to display online users
 public class OnlineUsersFrame extends JFrame {
     private JTable usersTable;
     private DefaultTableModel tableModel;
@@ -60,46 +172,127 @@ public class OnlineUsersFrame extends JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(400, 300);
         setLocationRelativeTo(null);
+        setResizable(true); // Allow resizing
 
-        // Tạo bảng và model
-        tableModel = new DefaultTableModel();
+        getContentPane().setBackground(new Color(240, 240, 240)); // Background color
+
+        JPanel panel = new JPanel(new BorderLayout());
+        panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        panel.setBackground(new Color(255, 255, 255)); // Panel background
+
+        // Create table model and columns
+        tableModel = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false; // Disable cell editing
+            }
+        };
         tableModel.addColumn("Avatar");
         tableModel.addColumn("Nickname");
+        tableModel.addColumn("User Object"); // Hidden column to store User object
 
+        // Create JTable and set custom properties
         usersTable = new JTable(tableModel) {
             @Override
             public Class<?> getColumnClass(int columnIndex) {
-                // Để hiển thị ảnh, cột đầu tiên phải trả về Icon
                 return columnIndex == 0 ? ImageIcon.class : String.class;
+            }
+
+            @Override
+            public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
+                Component c = super.prepareRenderer(renderer, row, column);
+                c.setBackground(row % 2 == 0 ? new Color(230, 230, 255) : Color.WHITE);
+                return c;
             }
         };
 
-        // Đặt kích thước cột cho hình ảnh
-        usersTable.getColumnModel().getColumn(0).setPreferredWidth(90); // Kích thước cột Avatar
-        usersTable.getColumnModel().getColumn(1).setPreferredWidth(200); // Kích thước cột Nickname
+        // Hide 'User Object' column (used for internal logic)
+        usersTable.getColumnModel().getColumn(2).setMinWidth(0);
+        usersTable.getColumnModel().getColumn(2).setMaxWidth(0);
 
-        // Đặt chiều cao hàng để vừa với ảnh 90x90
-        usersTable.setRowHeight(90); // Kích thước chiều cao hàng
+        // Add mouse listener to detect row clicks
+        usersTable.addMouseListener(new MouseInputAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int row = usersTable.getSelectedRow();
+                if (row != -1) {
+                    User user = (User) tableModel.getValueAt(row, 2); // Get User object
+                    showUserDetails(user); // Show user details in new window
+                }
+            }
+        });
 
-        add(new JScrollPane(usersTable), BorderLayout.CENTER);
+        usersTable.setRowHeight(90); // Adjust row height
+        usersTable.getColumnModel().getColumn(0).setPreferredWidth(90); // Set avatar column width
+        usersTable.getColumnModel().getColumn(1).setPreferredWidth(200); // Set nickname column width
+
+        // Customize table header
+        JTableHeader tableHeader = usersTable.getTableHeader();
+        tableHeader.setBackground(new Color(70, 130, 180)); // Header background color
+        tableHeader.setForeground(Color.WHITE); // Header text color
+        tableHeader.setFont(new Font("Arial", Font.BOLD, 14)); // Header font
+
+        JScrollPane scrollPane = new JScrollPane(usersTable); // Add table to scroll pane
+        panel.add(scrollPane, BorderLayout.CENTER);
+
+        add(panel); // Add panel to frame
     }
 
+    // Update table with list of online users
     public void updateOnlineUsers(List<User> onlineUsers) {
-        tableModel.setRowCount(0); // Xóa dữ liệu cũ
+        tableModel.setRowCount(0); // Clear previous data
         for (User user : onlineUsers) {
-            // Thêm ảnh và tên vào bảng
             ImageIcon avatar = new ImageIcon("assets/avatar/" + user.getAvatar() + ".jpg");
-            System.out.println("anh : "+ Client.user.getAvatar());
-            System.out.println("em : " + user.getAvatar());
-            avatar = resizeImage(avatar, 90, 90); // Resize ảnh về kích thước 90x90
-            tableModel.addRow(new Object[]{avatar, user.getNickname()});
-
+            avatar = resizeImage(avatar, 90, 90); // Resize avatar image
+            tableModel.addRow(new Object[]{avatar, user.getNickname(), user}); // Add row to table
         }
     }
 
+    // Resize image for better display
     private ImageIcon resizeImage(ImageIcon originalImage, int width, int height) {
         Image img = originalImage.getImage();
         Image newImg = img.getScaledInstance(width, height, Image.SCALE_SMOOTH);
         return new ImageIcon(newImg);
+    }
+
+    // Display user details in a new window
+    private void showUserDetails(User user) {
+        JFrame detailsFrame = new JFrame("Thông tin người dùng: " + user.getNickname());
+        detailsFrame.setSize(300, 200);
+        detailsFrame.setLocationRelativeTo(this); // Center relative to main window
+        detailsFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+        // Layout for user details
+        JPanel panel = new JPanel(new GridLayout(3, 1));
+        panel.add(new JLabel("Nickname: " + user.getNickname()));
+        panel.add(new JLabel("Avatar:"));
+        panel.add(new JLabel("username: " + user.getUsername()));
+        panel.add(new JLabel("numberOfGame: " + user.getNumberOfGame()));
+        panel.add(new JLabel("numberOfWin: " + user.getNumberOfWin()));
+        panel.add(new JLabel("numberOfDraw: " + user.getNumberOfDraw()));
+        panel.add(new JLabel("rank: " + user.getRank()));
+
+        // Display user's avatar
+        ImageIcon avatar = new ImageIcon("assets/avatar/" + user.getAvatar() + ".jpg");
+        Image resizedAvatar = avatar.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
+        panel.add(new JLabel(new ImageIcon(resizedAvatar)));
+
+        detailsFrame.add(panel); // Add panel to frame
+        detailsFrame.setVisible(true); // Show frame
+    }
+
+    // Main method to launch the application
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            OnlineUsersFrame frame = new OnlineUsersFrame();
+            frame.setVisible(true);
+
+            // Example users for testing
+            List<User> users = List.of(
+                new User("Alice", "alice_avatar"),
+                new User("Bob", "bob_avatar")
+            );
+            frame.updateOnlineUsers(users); // Load example users
+        });
     }
 }

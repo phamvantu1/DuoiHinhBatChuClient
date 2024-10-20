@@ -58,6 +58,16 @@ public class User {
     }
 
 
+        public User( String username, String nickname, String avatar, int numberOfGame, int numberOfWin, int numberOfDraw, int rank) {
+        this.username = username;
+        this.nickname = nickname;
+        this.avatar = avatar;
+        this.numberOfGame = numberOfGame;
+        this.numberOfWin = numberOfWin;
+        this.numberOfDraw = numberOfDraw;
+        this.rank = rank;
+    }
+
     public User(int ID, String nickname) {
         this.ID = ID;
         this.nickname = nickname;
