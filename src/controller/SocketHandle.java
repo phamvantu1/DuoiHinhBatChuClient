@@ -133,7 +133,7 @@ public class SocketHandle implements Runnable {
                             Client.closeAllViews();
 
                             homePageFrm.updateOnlineUsers(onlineUsers);
-                            System.out.println("homePageFrm chưa được khởi tạo hoặc không hiển thị");
+                            System.out.println("homePageFrm chua duoc khoi tao hoac khong hien thi");
                         }
                     } catch (Exception e) {
                         e.printStackTrace();  // Debugging để xem lỗi nếu xảy ra
@@ -186,9 +186,15 @@ public class SocketHandle implements Runnable {
                 }
                 //Xử lý hiển thị thông tin đối thủ là bạn bè/không
                 if (messageSplit[0].equals("check-friend-response")) {
-//                    if (Client.competitorInfoFrm != null) {
-//                        Client.competitorInfoFrm.checkFriend((messageSplit[1].equals("1")));
-//                    }
+//<<<<<<< HEAD
+////                    if (Client.competitorInfoFrm != null) {
+////                        Client.competitorInfoFrm.checkFriend((messageSplit[1].equals("1")));
+////                    }
+//=======
+                    if (Client.competitorInfoFrm != null) {
+                        Client.competitorInfoFrm.checkFriend((messageSplit[1].equals("1")));
+                    }
+//>>>>>>> origin/dung
                 }
                 //Xử lý kết quả tìm phòng từ server
                 if (messageSplit[0].equals("room-fully")) {
@@ -210,9 +216,15 @@ public class SocketHandle implements Runnable {
                 }
                 //Xử lý xem rank
                 if (messageSplit[0].equals("return-get-rank-charts")) {
+//<<<<<<< HEAD
 //                    if (Client.rankFrm != null) {
 //                        Client.rankFrm.setDataToTable(getListRank(messageSplit));
 //                    }
+//=======
+                    if (Client.rankFrm != null) {
+                        Client.rankFrm.setDataToTable(getListRank(messageSplit));
+                    }
+//>>>>>>> origin/dung
                 }
                 //Xử lý lấy danh sách phòng
                 if (messageSplit[0].equals("room-list")) {
@@ -275,15 +287,27 @@ public class SocketHandle implements Runnable {
                     String nickname = messageSplit[2];
                     Client.openView(Client.View.FRIEND_REQUEST, ID, nickname);
                 }
-                //Xử lý khi nhận được yêu cầu thách đấu
-//                if (messageSplit[0].equals("duel-notice")) {
-//                    int res = JOptionPane.showConfirmDialog(Client.getVisibleJFrame(), "Bạn nhận được lời thách đấu của " + messageSplit[2] + " (ID=" + messageSplit[1] + ")", "Xác nhận thách đấu", JOptionPane.YES_NO_OPTION);
-//                    if (res == JOptionPane.YES_OPTION) {
-//                        Client.socketHandle.write("agree-duel," + messageSplit[1]);
-//                    } else {
-//                        Client.socketHandle.write("disagree-duel," + messageSplit[1]);
-//                    }
-//                }
+//<<<<<<< HEAD
+//                //Xử lý khi nhận được yêu cầu thách đấu
+////                if (messageSplit[0].equals("duel-notice")) {
+////                    int res = JOptionPane.showConfirmDialog(Client.getVisibleJFrame(), "Bạn nhận được lời thách đấu của " + messageSplit[2] + " (ID=" + messageSplit[1] + ")", "Xác nhận thách đấu", JOptionPane.YES_NO_OPTION);
+////                    if (res == JOptionPane.YES_OPTION) {
+////                        Client.socketHandle.write("agree-duel," + messageSplit[1]);
+////                    } else {
+////                        Client.socketHandle.write("disagree-duel," + messageSplit[1]);
+////                    }
+////                }
+//=======
+//                Xử lý khi nhận được yêu cầu thách đấu
+                if (messageSplit[0].equals("duel-notice")) {
+                    int res = JOptionPane.showConfirmDialog(Client.getVisibleJFrame(), "Bạn nhận được lời thách đấu của " + messageSplit[2] + " (ID=" + messageSplit[1] + ")", "Xác nhận thách đấu", JOptionPane.YES_NO_OPTION);
+                    if (res == JOptionPane.YES_OPTION) {
+                        Client.socketHandle.write("agree-duel," + messageSplit[1]);
+                    } else {
+                        Client.socketHandle.write("disagree-duel," + messageSplit[1]);
+                    }
+                }
+//>>>>>>> origin/dung
                 //Xử lý không đồng ý thách đấu
                 if (messageSplit[0].equals("disagree-duel")) {
                     Client.closeAllViews();

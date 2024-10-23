@@ -23,13 +23,23 @@ public class Client {
     public static FriendListFrm friendListFrm;
 //    public static FindRoomFrm findRoomFrm;
     public static WaitingRoomFrm waitingRoomFrm;
-//    public static GameClientFrm gameClientFrm;
+//<<<<<<< HEAD
+////    public static GameClientFrm gameClientFrm;
+//    public static CreateRoomPasswordFrm createRoomPasswordFrm;
+//    public static JoinRoomPasswordFrm joinRoomPasswordFrm;
+////    public static CompetitorInfoFrm competitorInfoFrm;
+////    public static RankFrm rankFrm;
+////    public static GameNoticeFrm gameNoticeFrm;
+////    public static FriendRequestFrm friendRequestFrm;
+//=======
+    public static GameClientFrm gameClientFrm;
     public static CreateRoomPasswordFrm createRoomPasswordFrm;
     public static JoinRoomPasswordFrm joinRoomPasswordFrm;
-//    public static CompetitorInfoFrm competitorInfoFrm;
-//    public static RankFrm rankFrm;
+    public static CompetitorInfoFrm competitorInfoFrm;
+    public static RankFrm rankFrm;
 //    public static GameNoticeFrm gameNoticeFrm;
-//    public static FriendRequestFrm friendRequestFrm;
+    public static FriendRequestFrm friendRequestFrm;
+//>>>>>>> origin/dung
 //    public static GameAIFrm gameAIFrm;
 //    public static RoomNameFrm roomNameFrm;
     public static SocketHandle socketHandle;
@@ -49,9 +59,15 @@ public class Client {
         if (joinRoomPasswordFrm != null && joinRoomPasswordFrm.isVisible()) {
             return joinRoomPasswordFrm;
         }
-//        if (rankFrm != null && rankFrm.isVisible()) {
-//            return rankFrm;
-//        }
+//<<<<<<< HEAD
+////        if (rankFrm != null && rankFrm.isVisible()) {
+////            return rankFrm;
+////        }
+//=======
+        if (rankFrm != null && rankFrm.isVisible()) {
+            return rankFrm;
+        }
+//>>>>>>> origin/dung
         return homePageFrm;
     }
 
@@ -91,10 +107,17 @@ public class Client {
                     createRoomPasswordFrm = new CreateRoomPasswordFrm();
                     createRoomPasswordFrm.setVisible(true);
                     break;
-//                case RANK:
-//                    rankFrm = new RankFrm();
-//                    rankFrm.setVisible(true);
-//                    break;
+//<<<<<<< HEAD
+////                case RANK:
+////                    rankFrm = new RankFrm();
+////                    rankFrm.setVisible(true);
+////                    break;
+//=======
+                case RANK:
+                    rankFrm = new RankFrm();
+                    rankFrm.setVisible(true);
+                    break;
+//>>>>>>> origin/dung
 //                case GAME_AI:
 //                    gameAIFrm = new GameAIFrm();
 //                    gameAIFrm.setVisible(true);
@@ -113,9 +136,15 @@ public class Client {
                     joinRoomPasswordFrm = new JoinRoomPasswordFrm(arg1, arg2);
                     joinRoomPasswordFrm.setVisible(true);
                     break;
-//                case FRIEND_REQUEST:
-//                    friendRequestFrm = new FriendRequestFrm(arg1, arg2);
-//                    friendRequestFrm.setVisible(true);
+//<<<<<<< HEAD
+////                case FRIEND_REQUEST:
+////                    friendRequestFrm = new FriendRequestFrm(arg1, arg2);
+////                    friendRequestFrm.setVisible(true);
+//=======
+                case FRIEND_REQUEST:
+                    friendRequestFrm = new FriendRequestFrm(arg1, arg2);
+                    friendRequestFrm.setVisible(true);
+//>>>>>>> origin/dung
 //            }
         }
     }
@@ -128,10 +157,17 @@ public class Client {
     }
 
     public static void openView(View viewName, User user) {
-//        if (viewName == View.COMPETITOR_INFO) {
-//            competitorInfoFrm = new CompetitorInfoFrm(user);
-//            competitorInfoFrm.setVisible(true);
-//        }
+//<<<<<<< HEAD
+////        if (viewName == View.COMPETITOR_INFO) {
+////            competitorInfoFrm = new CompetitorInfoFrm(user);
+////            competitorInfoFrm.setVisible(true);
+////        }
+//=======
+        if (viewName == View.COMPETITOR_INFO) {
+            competitorInfoFrm = new CompetitorInfoFrm(user);
+            competitorInfoFrm.setVisible(true);
+        }
+//>>>>>>> origin/dung
     }
 
     public static void openView(View viewName, String arg1, String arg2) {
@@ -174,10 +210,17 @@ public class Client {
                 case WAITING_ROOM:
                     waitingRoomFrm.dispose();
                     break;
-//                case GAME_CLIENT:
-//                    gameClientFrm.stopAllThread();
-//                    gameClientFrm.dispose();
-//                    break;
+//<<<<<<< HEAD
+////                case GAME_CLIENT:
+////                    gameClientFrm.stopAllThread();
+////                    gameClientFrm.dispose();
+////                    break;
+//=======
+                case GAME_CLIENT:
+                    gameClientFrm.stopAllThread();
+                    gameClientFrm.dispose();
+                    break;
+//>>>>>>> origin/dung
                 case CREATE_ROOM_PASSWORD:
                     createRoomPasswordFrm.dispose();
                     break;
@@ -187,6 +230,7 @@ public class Client {
 //                case COMPETITOR_INFO:
 //                    competitorInfoFrm.dispose();
 //                    break;
+//<<<<<<< HEAD
 //                case RANK:
 //                    rankFrm.dispose();
 //                    break;
@@ -196,6 +240,17 @@ public class Client {
 //                case FRIEND_REQUEST:
 //                    friendRequestFrm.dispose();
 //                    break;
+//=======
+                case RANK:
+                    rankFrm.dispose();
+                    break;
+//                case GAME_NOTICE:
+//                    gameNoticeFrm.dispose();
+//                    break;
+                case FRIEND_REQUEST:
+                    friendRequestFrm.dispose();
+                    break;
+//>>>>>>> origin/dung
 //                case GAME_AI:
 //                    gameAIFrm.dispose();
 //                    break;

@@ -65,7 +65,12 @@ public class OnlineUsersFrame extends JFrame {
                 int row = usersTable.getSelectedRow();
                 if (row != -1) {
                     User user = (User) tableModel.getValueAt(row, 2); // Get User object
-                    showUserDetails(user); // Show user details in new window
+//                    showUserDetails(user); // Show user details in new window  
+                    UserDetailFrm userDetailFrm = new UserDetailFrm(user);
+                    userDetailFrm.setVisible(true);
+                    
+                    // Close the current frame (OnlineUsersFrame)
+                     SwingUtilities.getWindowAncestor(usersTable).dispose();
                 }
             }
         });
