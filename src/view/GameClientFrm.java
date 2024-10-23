@@ -767,19 +767,23 @@ imagePanel.repaint();
 
 private void updateImage() {
     // Mảng chứa đường dẫn đến 5 ảnh
-    String[] imagePaths = {
-        "assets/game/swords-1.png",
-        "assets/game/swords-2.png",
-        "assets/game/swords-3.png",
-        "assets/game/swords-4.png",
-        "assets/game/swords-5.png"
+   // Mảng chứa đường dẫn đến 5 ảnh và câu trả lời tương ứng
+    String[][] imagesWithAnswers = {
+        {"assets/image/o2.jpg", "sword1"},
+        {"assets/image/x2.jpg", "sword2"},
+        {"assets/image/owin.jpg", "sword3"},
+        {"assets/image/xwin.jpg", "sword4"},
+        {"assets/image/o3.jpg", "sword5"}
+
     };
 
     // Tạo đối tượng Random để chọn ngẫu nhiên
     Random random = new Random();
 
-    // Chọn ngẫu nhiên một ảnh từ mảng
-    String randomImagePath = imagePaths[random.nextInt(imagePaths.length)];
+    // Chọn ngẫu nhiên một phần tử từ mảng
+    int randomIndex = random.nextInt(imagesWithAnswers.length);
+    String randomImagePath = imagesWithAnswers[randomIndex][0];
+    correctAnswer = imagesWithAnswers[randomIndex][1];  // Lưu câu trả lời đúng
 
     // Tạo ImageIcon mới với đường dẫn của ảnh ngẫu nhiên
     ImageIcon imageIcon = new ImageIcon(randomImagePath);
