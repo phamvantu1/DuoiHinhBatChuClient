@@ -275,15 +275,15 @@ public class SocketHandle implements Runnable {
                     String nickname = messageSplit[2];
                     Client.openView(Client.View.FRIEND_REQUEST, ID, nickname);
                 }
-                //Xử lý khi nhận được yêu cầu thách đấu
-//                if (messageSplit[0].equals("duel-notice")) {
-//                    int res = JOptionPane.showConfirmDialog(Client.getVisibleJFrame(), "Bạn nhận được lời thách đấu của " + messageSplit[2] + " (ID=" + messageSplit[1] + ")", "Xác nhận thách đấu", JOptionPane.YES_NO_OPTION);
-//                    if (res == JOptionPane.YES_OPTION) {
-//                        Client.socketHandle.write("agree-duel," + messageSplit[1]);
-//                    } else {
-//                        Client.socketHandle.write("disagree-duel," + messageSplit[1]);
-//                    }
-//                }
+//                Xử lý khi nhận được yêu cầu thách đấu
+                if (messageSplit[0].equals("duel-notice")) {
+                    int res = JOptionPane.showConfirmDialog(Client.getVisibleJFrame(), "Bạn nhận được lời thách đấu của " + messageSplit[2] + " (ID=" + messageSplit[1] + ")", "Xác nhận thách đấu", JOptionPane.YES_NO_OPTION);
+                    if (res == JOptionPane.YES_OPTION) {
+                        Client.socketHandle.write("agree-duel," + messageSplit[1]);
+                    } else {
+                        Client.socketHandle.write("disagree-duel," + messageSplit[1]);
+                    }
+                }
                 //Xử lý không đồng ý thách đấu
                 if (messageSplit[0].equals("disagree-duel")) {
                     Client.closeAllViews();
