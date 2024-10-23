@@ -95,23 +95,23 @@ public class GameClientFrm extends javax.swing.JFrame {
 
 //        gamePanel.setLayout(new GridLayout(size, size));
         // Tạo ImageIcon từ đường dẫn ảnh
-ImageIcon imageIcon = new ImageIcon("assets/image/caroicon.png");
+        ImageIcon imageIcon = new ImageIcon("assets/image/caroicon.png");
 
 // Tạo JLabel chứa hình ảnh
-JLabel imageLabel = new JLabel(imageIcon);
+        JLabel imageLabel = new JLabel(imageIcon);
 
 // Xóa tất cả các thành phần cũ của imagePanel (nếu có)
-imagePanel.removeAll();
+        imagePanel.removeAll();
 
 // Đặt layout cho imagePanel
-imagePanel.setLayout(new BorderLayout());
+        imagePanel.setLayout(new BorderLayout());
 
 // Thêm JLabel vào imagePanel
-imagePanel.add(imageLabel, BorderLayout.CENTER);
-correctAnswer="caro";
+        imagePanel.add(imageLabel, BorderLayout.CENTER);
+        correctAnswer = "caro";
 // Cập nhật và vẽ lại imagePanel
-imagePanel.revalidate();
-imagePanel.repaint();
+        imagePanel.revalidate();
+        imagePanel.repaint();
 
 
         //Setup play button
@@ -765,41 +765,50 @@ imagePanel.repaint();
     }//GEN-LAST:event_messageTextFieldKeyPressed
 
 
-private void updateImage() {
-    // Mảng chứa đường dẫn đến 5 ảnh
-    String[] imagePaths = {
-        "assets/game/swords-1.png",
-        "assets/game/swords-2.png",
-        "assets/game/swords-3.png",
-        "assets/game/swords-4.png",
-        "assets/game/swords-5.png"
-    };
+    private void updateImage() {
+        // Mảng chứa đường dẫn đến 10 ảnh
+        // Mảng chứa đường dẫn đến 10 ảnh và câu trả lời tương ứng
+        String[][] imagesWithAnswers = {
+                {"assets/dhbc/dhbc1.png", "sword1"},
+                {"assets/dhbc/dhbc2.png", "sword1"},
+                {"assets/dhbc/dhbc3.png", "sword1"},
+                {"assets/dhbc/dhbc4.png", "sword1"},
+                {"assets/dhbc/dhbc5.png", "sword1"},
+                {"assets/dhbc/dhbc6.png", "sword1"},
+                {"assets/dhbc/dhbc7.png", "sword1"},
+                {"assets/dhbc/dhbc8.png", "sword1"},
+                {"assets/dhbc/dhbc9.png", "sword1"},
+                {"assets/dhbc/dhbc10.png", "sword1"},
 
-    // Tạo đối tượng Random để chọn ngẫu nhiên
-    Random random = new Random();
+        };
 
-    // Chọn ngẫu nhiên một ảnh từ mảng
-    String randomImagePath = imagePaths[random.nextInt(imagePaths.length)];
+        // Tạo đối tượng Random để chọn ngẫu nhiên
+        Random random = new Random();
 
-    // Tạo ImageIcon mới với đường dẫn của ảnh ngẫu nhiên
-    ImageIcon imageIcon = new ImageIcon(randomImagePath);
+        // Chọn ngẫu nhiên một phần tử từ mảng
+        int randomIndex = random.nextInt(imagesWithAnswers.length);
+        String randomImagePath = imagesWithAnswers[randomIndex][0];
+        correctAnswer = imagesWithAnswers[randomIndex][1];  // Lưu câu trả lời đúng
 
-    // Tạo JLabel chứa hình ảnh
-    JLabel imageLabel = new JLabel(imageIcon);
+        // Tạo ImageIcon mới với đường dẫn của ảnh ngẫu nhiên
+        ImageIcon imageIcon = new ImageIcon(randomImagePath);
 
-    // Xóa tất cả các thành phần cũ của imagePanel (nếu có)
-    imagePanel.removeAll();
+        // Tạo JLabel chứa hình ảnh
+        JLabel imageLabel = new JLabel(imageIcon);
 
-    // Đặt layout cho imagePanel
-    imagePanel.setLayout(new BorderLayout());
+        // Xóa tất cả các thành phần cũ của imagePanel (nếu có)
+        imagePanel.removeAll();
 
-    // Thêm JLabel vào imagePanel
-    imagePanel.add(imageLabel, BorderLayout.CENTER);
+        // Đặt layout cho imagePanel
+        imagePanel.setLayout(new BorderLayout());
 
-    // Cập nhật và vẽ lại imagePanel
-    imagePanel.revalidate();
-    imagePanel.repaint();
-}
+        // Thêm JLabel vào imagePanel
+        imagePanel.add(imageLabel, BorderLayout.CENTER);
+
+        // Cập nhật và vẽ lại imagePanel
+        imagePanel.revalidate();
+        imagePanel.repaint();
+    }
 
     private void answerFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_answerFieldActionPerformed
         // TODO add your handling code here:
@@ -829,41 +838,7 @@ private String correctAnswer;
         JOptionPane.showMessageDialog(rootPane, message);
     }
 
-    public void playSound() {
-        try {
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("assets/sound/click.wav").getAbsoluteFile());
-            Clip clip = AudioSystem.getClip();
-            clip.open(audioInputStream);
-            clip.start();
-        } catch (Exception ex) {
-            System.out.println("Error with playing sound.");
-            ex.printStackTrace();
-        }
-    }
 
-    public void playSound1() {
-        try {
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("assets/sound/1click.wav").getAbsoluteFile());
-            Clip clip = AudioSystem.getClip();
-            clip.open(audioInputStream);
-            clip.start();
-        } catch (Exception ex) {
-            System.out.println("Error with playing sound.");
-            ex.printStackTrace();
-        }
-    }
-
-    public void playSound2() {
-        try {
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("assets/sound/win.wav").getAbsoluteFile());
-            Clip clip = AudioSystem.getClip();
-            clip.open(audioInputStream);
-            clip.start();
-        } catch (Exception ex) {
-            System.out.println("Error with playing sound.");
-            ex.printStackTrace();
-        }
-    }
 
     public void stopTimer() {
         timer.stop();
@@ -890,7 +865,6 @@ private String correctAnswer;
                         try {
                             button[a][b].setDisabledIcon(new ImageIcon(normalItem[not(numberOfMatch % 2)]));
                             button[a][b].setEnabled(false);
-                            playSound();
                             second = 60;
                             minute = 0;
                             matrix[a][b] = 1;
@@ -950,18 +924,8 @@ private String correctAnswer;
         timer.start();
     }
 
-    public void addMessage(String message) {
-        String temp = messageTextArea.getText();
-        temp += competitor.getNickname() + ": " + message + "\n";
-        messageTextArea.setText(temp);
-        messageTextArea.setCaretPosition(messageTextArea.getDocument().getLength());
-    }
 
 
-
-//    public void setLose(String xx, String yy) {
-//        caro(xx, yy);
-//    }
 
     public void increaseWinMatchToUser() {
         Client.user.setNumberOfWin(Client.user.getNumberOfWin() + 1);
@@ -991,80 +955,6 @@ private String correctAnswer;
         messageTextArea.setText(tmp);
         messageTextArea.setCaretPosition(messageTextArea.getDocument().getLength());
     }
-
-    public void showDrawRequest() {
-        int res = JOptionPane.showConfirmDialog(rootPane, "Đối thử muốn cầu hóa ván này, bạn đồng ý chứ", "Yêu cầu cầu hòa", JOptionPane.YES_NO_OPTION);
-        if (res == JOptionPane.YES_OPTION) {
-            try {
-                timer.stop();
-                setEnableButton(false);
-                Client.socketHandle.write("draw-confirm,");
-            } catch (IOException ex) {
-                JOptionPane.showMessageDialog(rootPane, ex.getMessage());
-            }
-        } else {
-            try {
-                Client.socketHandle.write("draw-refuse,");
-            } catch (IOException ex) {
-                JOptionPane.showMessageDialog(rootPane, ex.getMessage());
-            }
-        }
-    }
-
-    public void voiceOpenMic() {
-
-        Thread sendThread = new Thread() {
-
-            @Override
-            public void run() {
-                AudioFormat format = new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, 44100, 16, 2, 4, 44100, true);
-                TargetDataLine microphone;
-                try {
-                    microphone = AudioSystem.getTargetDataLine(format);
-
-                    DataLine.Info info = new DataLine.Info(TargetDataLine.class, format);
-                    microphone = (TargetDataLine) AudioSystem.getLine(info);
-                    microphone.open(format);
-
-                    ByteArrayOutputStream out = new ByteArrayOutputStream();
-                    int numBytesRead;
-                    int CHUNK_SIZE = 1024;
-                    byte[] data = new byte[microphone.getBufferSize() / 5];
-                    microphone.start();
-
-                    DataLine.Info dataLineInfo = new DataLine.Info(SourceDataLine.class, format);
-
-                    int port = 5555;
-
-                    InetAddress address = InetAddress.getByName(competitorIP);
-                    DatagramSocket socket = new DatagramSocket();
-                    byte[] buffer = new byte[1024];
-                    isSending = true;
-                    while (isSending) {
-                        numBytesRead = microphone.read(data, 0, CHUNK_SIZE);
-                        out.write(data, 0, numBytesRead);
-                        DatagramPacket request = new DatagramPacket(data, numBytesRead, address, port);
-                        socket.send(request);
-
-                    }
-                    out.close();
-                    socket.close();
-                    microphone.close();
-                } catch (LineUnavailableException | IOException e) {
-                    e.printStackTrace();
-                }
-            }
-
-        };
-        sendThread.start();
-
-    }
-
-
-
-
-
-
 
 
 
@@ -1131,50 +1021,6 @@ private String correctAnswer;
         }
     }
 
-    public int checkRow() {
-        int win = 0, hang = 0;
-        boolean check = false;
-        List<JButton> list = new ArrayList<>();
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
-                if (check) {
-                    if (competitorMatrix[i][j] == 1) {
-                        hang++;
-                        list.add(button[i][j]);
-                        if (hang > 4) {
-                            for (JButton jButton : list) {
-                                button[i][j].setDisabledIcon(new ImageIcon(winItem[numberOfMatch % 2]));
-                            }
-                            win = 1;
-                            break;
-                        }
-                        continue;
-                    } else {
-                        list = new ArrayList<>();
-                        check = false;
-                        hang = 0;
-                    }
-                }
-                if (competitorMatrix[i][j] == 1) {
-                    check = true;
-                    list.add(button[i][j]);
-                    hang++;
-                } else {
-                    list = new ArrayList<>();
-                    check = false;
-                }
-            }
-            list = new ArrayList<>();
-            hang = 0;
-        }
-        return win;
-    }
-
- 
-
-    /**
-     * @param args the command line arguments
-     */
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1222,7 +1068,5 @@ private String correctAnswer;
     private javax.swing.JButton sendButton;
     private javax.swing.JButton submitBut;
     private javax.swing.JLabel vsIcon;
-    // End of variables declaration//GEN-END:variables
-
 
 }
