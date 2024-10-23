@@ -187,15 +187,15 @@ public class Client {
 //                case COMPETITOR_INFO:
 //                    competitorInfoFrm.dispose();
 //                    break;
-//                case RANK:
-//                    rankFrm.dispose();
-//                    break;
+                case RANK:
+                    rankFrm.dispose();
+                    break;
 //                case GAME_NOTICE:
 //                    gameNoticeFrm.dispose();
 //                    break;
-//                case FRIEND_REQUEST:
-//                    friendRequestFrm.dispose();
-//                    break;
+                case FRIEND_REQUEST:
+                    friendRequestFrm.dispose();
+                    break;
 //                case GAME_AI:
 //                    gameAIFrm.dispose();
 //                    break;
