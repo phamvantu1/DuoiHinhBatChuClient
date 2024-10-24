@@ -19,11 +19,11 @@ public class GameNoticeFrm extends javax.swing.JFrame {
      */
     public GameNoticeFrm(String title, String message) {
         initComponents();
-        this.setTitle("Caro Game Nhóm 5");
+        this.setTitle("Duoi Hinh Bat Chu Nhom 1");
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
-        this.setIconImage(new ImageIcon("assets/image/caroicon.png").getImage());
+        this.setIconImage(new ImageIcon("assets/image/icon.png").getImage());
         this.setResizable(false);
         frameLabel.setText(title);
         messageLabel.setText(message);

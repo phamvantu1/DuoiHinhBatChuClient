@@ -30,7 +30,7 @@ public class RoomListFrm extends javax.swing.JFrame {
     public RoomListFrm() {
         initComponents();
         this.setTitle("Duoi Hinh Bat Chu Nhom 1");
-        this.setIconImage(new ImageIcon("assets/image/caroicon.png").getImage());
+        this.setIconImage(new ImageIcon("assets/image/icon.png").getImage());
         this.setResizable(false);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);

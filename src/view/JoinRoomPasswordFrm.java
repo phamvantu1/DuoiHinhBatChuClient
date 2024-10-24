@@ -23,7 +23,7 @@ public class JoinRoomPasswordFrm extends javax.swing.JFrame {
     public JoinRoomPasswordFrm(int room, String password) {
         initComponents();
         this.setTitle("Duoi Hinh Bat Chu Nhom 1");
-        this.setIconImage(new ImageIcon("assets/image/caroicon.png").getImage());
+        this.setIconImage(new ImageIcon("assets/image/icon.png").getImage());
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         this.setResizable(false);
         this.setLocationRelativeTo(null);

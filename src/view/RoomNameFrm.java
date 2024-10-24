@@ -25,7 +25,7 @@ public class RoomNameFrm extends javax.swing.JFrame {
     public RoomNameFrm() {
         initComponents();
         this.setTitle("Caro Game Nhóm 5");
-        this.setIconImage(new ImageIcon("assets/image/caroicon.png").getImage());
+        this.setIconImage(new ImageIcon("assets/image/icon.png").getImage());
         this.setResizable(false);
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         this.setLocationRelativeTo(null);

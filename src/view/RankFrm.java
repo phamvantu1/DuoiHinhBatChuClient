@@ -29,9 +29,9 @@ public class RankFrm extends javax.swing.JFrame {
      */
     public RankFrm() {
         initComponents();
-        this.setTitle("Caro Game Nhóm 5");
+        this.setTitle("Duoi Hinh Bat Chu Nhom 1");
         tableModel = (DefaultTableModel) rankTextArea.getModel();
-        this.setIconImage(new ImageIcon("assets/image/caroicon.png").getImage());
+        this.setIconImage(new ImageIcon("assets/image/icon.png").getImage());
         this.setResizable(false);
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         this.setLocationRelativeTo(null);

@@ -5,6 +5,7 @@
  */
 package controller;
 
+import java.awt.Color;
 import model.User;
 
 import javax.swing.*;
@@ -99,16 +100,22 @@ public class SocketHandle implements Runnable {
                     Client.openView(Client.View.HOMEPAGE);
                 }
                 // xử lý kết quả chơi game
-                if (messageSplit[0].equals("user-winer")) {
+                if (messageSplit[0].equals("user-winner")) {
                     System.out.println("ban da thang");
-                    handleCorrectAnswers(messageSplit[1]);
+                   
+                     Client.gameClientFrm.showWinMessage(); 
+                    
                 }
                 if (messageSplit[0].equals("user-loser")) {
                     System.out.println("ban da thua");
-                    handleCorrectAnswers(messageSplit[1]);
+                    Client.gameClientFrm.showLoserMessage();
+                    
                 }
-                
-                
+                   if (messageSplit[0].equals("user-tie")) {
+                    System.out.println("ban da hoa");
+                    Client.gameClientFrm.showTieMessage();
+                }
+                   
                 if (messageSplit[0].equals("online-users")) {
                     System.out.println("Received online users message: " + message);  // Debug output
                     String[] users = messageSplit[1].split(";");
@@ -304,10 +311,7 @@ public class SocketHandle implements Runnable {
                     Client.openView(Client.View.HOMEPAGE);
                     JOptionPane.showMessageDialog(Client.homePageFrm, "Đối thủ không đồng ý thách đấu");
                 }
-                //Xử lý đánh một nước trong ván chơi
-                if (messageSplit[0].equals("caro")) {
-//                    Client.gameClientFrm.addCompetitorMove(messageSplit[1], messageSplit[2]);
-                }
+
                 if (messageSplit[0].equals("chat")) {
 //                    Client.gameClientFrm.addMessage(messageSplit[1]);
                 }
@@ -364,36 +368,9 @@ public class SocketHandle implements Runnable {
         return socketOfClient;
     }
 
-    private void handleCorrectAnswers(String correctAnswersStr) {
-        int correctAnswers = Integer.parseInt(correctAnswersStr);
-        if (client1CorrectAnswers == -1) {
-            client1CorrectAnswers = correctAnswers;
-        } else {
-            client2CorrectAnswers = correctAnswers;
-            determineWinner();
-        }
-    }
 
-    private void determineWinner() {
-        String result;
-        if (client1CorrectAnswers > client2CorrectAnswers) {
-            result = "Client 1 wins!";
-        } else if (client1CorrectAnswers < client2CorrectAnswers) {
-            result = "Client 2 wins!";
-        } else {
-            result = "It's a draw!";
-        }
-        sendResultToClients(result);
-    }
 
-    private void sendResultToClients(String result) {
-        try {
-            outputWriter.write("result," + result);
-            outputWriter.newLine();
-            outputWriter.flush();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
+
+ 
 }

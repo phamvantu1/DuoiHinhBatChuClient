@@ -18,11 +18,9 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketTimeoutException;
 import java.util.List;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.Timer;
+import javax.swing.*;
 import java.util.ArrayList;
+import java.util.TimerTask;
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -31,7 +29,6 @@ import javax.sound.sampled.DataLine;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.SourceDataLine;
 import javax.sound.sampled.TargetDataLine;
-import javax.swing.JOptionPane;
 
 import model.User;
 
@@ -54,6 +51,34 @@ public class GameClientFrm extends javax.swing.JFrame {
     private int userWin;
     private int competitorWin;
     private final String competitorIP;
+    private JDialog currentDialog = null;
+    
+        // Phương thức hiển thị thông báo và đóng hộp thoại cũ nếu có
+    public void showMessage(String message, String title, int messageType) {
+        if (currentDialog != null) {
+            currentDialog.dispose(); // Đóng hộp thoại cũ
+        }
+
+        // Tạo hộp thoại mới từ JOptionPane
+        JOptionPane optionPane = new JOptionPane(message, messageType);
+        currentDialog = optionPane.createDialog(this, title); // Lưu hộp thoại mới
+        currentDialog.setVisible(true);
+    }
+
+     public void showWinMessage() {
+        JOptionPane.showMessageDialog(this, "Chúc mừng! Bạn đã thắng!", "Thắng", JOptionPane.INFORMATION_MESSAGE);
+    }
+     
+         public void showLoserMessage() {
+        JOptionPane.showMessageDialog(this, "Hix ! Thua rồi !", "Thua", JOptionPane.INFORMATION_MESSAGE);
+    }
+     
+             public void showTieMessage() {
+        JOptionPane.showMessageDialog(this, "Hòa !!!", "Hòa", JOptionPane.INFORMATION_MESSAGE);
+    }
+     
+             
+
 
     public GameClientFrm(User competitor, int room_ID, int isStart, String competitorIP) {
         initComponents();
@@ -209,6 +234,7 @@ public class GameClientFrm extends javax.swing.JFrame {
         imagePanel = new javax.swing.JPanel();
         answerField = new javax.swing.JTextField();
         submitBut = new javax.swing.JButton();
+        jButtonClose = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         playerLabel = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
@@ -332,6 +358,15 @@ public class GameClientFrm extends javax.swing.JFrame {
             }
         });
 
+        jButtonClose.setBackground(new java.awt.Color(255, 102, 102));
+        jButtonClose.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButtonClose.setText("Close");
+        jButtonClose.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCloseActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout gamePanelLayout = new javax.swing.GroupLayout(gamePanel);
         gamePanel.setLayout(gamePanelLayout);
         gamePanelLayout.setHorizontalGroup(
@@ -347,7 +382,9 @@ public class GameClientFrm extends javax.swing.JFrame {
                         .addComponent(imagePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(gamePanelLayout.createSequentialGroup()
                         .addGap(115, 115, 115)
-                        .addComponent(submitBut)))
+                        .addGroup(gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonClose)
+                            .addComponent(submitBut))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         gamePanelLayout.setVerticalGroup(
@@ -359,7 +396,9 @@ public class GameClientFrm extends javax.swing.JFrame {
                 .addComponent(answerField, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(63, 63, 63)
                 .addComponent(submitBut)
-                .addContainerGap(106, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonClose)
+                .addGap(26, 26, 26))
         );
 
         jPanel2.setBackground(new java.awt.Color(102, 102, 102));
@@ -636,6 +675,11 @@ public class GameClientFrm extends javax.swing.JFrame {
         // TODO add your handling code here:
         submitButActionPerformed (evt);
     }//GEN-LAST:event_answerFieldActionPerformed
+
+    private void jButtonCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCloseActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jButtonCloseActionPerformed
     
     private String correctAnswer;
     private int correctAnswerCount = 0;
@@ -661,6 +705,8 @@ public class GameClientFrm extends javax.swing.JFrame {
             sendCorrectAnswers(correctAnswerCount);
             questionCount = 0;
             correctAnswerCount = 0;
+             JOptionPane.showMessageDialog(this, "Vui lòng đợi kết quả", "wait", JOptionPane.INFORMATION_MESSAGE);
+             
 
         } else {
             // Cập nhật ảnh mới sau khi trả lời
@@ -672,7 +718,7 @@ public class GameClientFrm extends javax.swing.JFrame {
     public void sendCorrectAnswers(int correctAnswers) {
         try {
             Client.socketHandle.write("correct-answers," + correctAnswers);
-            System.out.println("gui dap an" + correctAnswers);
+            System.out.println("gui dap an dung : " + correctAnswers);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -753,6 +799,7 @@ public class GameClientFrm extends javax.swing.JFrame {
     private javax.swing.JLabel countDownLabel;
     private javax.swing.JPanel gamePanel;
     private javax.swing.JPanel imagePanel;
+    private javax.swing.JButton jButtonClose;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JFrame jFrame2;
     private javax.swing.JFrame jFrame3;

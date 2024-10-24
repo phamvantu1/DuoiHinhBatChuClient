@@ -27,8 +27,8 @@ public class FriendRequestFrm extends javax.swing.JFrame {
     public FriendRequestFrm(int id, String nickname) {
         this.id = id;
         initComponents();
-        this.setTitle("Caro Game Nhóm 5");
-        this.setIconImage(new ImageIcon("assets/image/caroicon.png").getImage());
+        this.setTitle("Duoi Hinh Bat Chu Nhom 1");
+        this.setIconImage(new ImageIcon("assets/image/icon.png").getImage());
         this.setResizable(false);
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         this.setLocationRelativeTo(null);
