@@ -99,10 +99,16 @@ public class SocketHandle implements Runnable {
                     Client.openView(Client.View.HOMEPAGE);
                 }
                 // xử lý kết quả chơi game
-                if (messageSplit[0].equals("user-win")) {
-                    System.out.println("nhan ket qua choi game");
+                if (messageSplit[0].equals("user-winer")) {
+                    System.out.println("ban da thang");
                     handleCorrectAnswers(messageSplit[1]);
                 }
+                if (messageSplit[0].equals("user-loser")) {
+                    System.out.println("ban da thua");
+                    handleCorrectAnswers(messageSplit[1]);
+                }
+                
+                
                 //Xử lý kết quả ván chơi
 //                if (messageSplit[0].equals("result")) {
 //                    gameClientFrm.handleResultMessage(message);
