@@ -25,7 +25,7 @@ public class UserDetailFrm extends javax.swing.JFrame {
         jLabelAvatar.setIcon(new ImageIcon("assets/avatar/" + user.getAvatar() + ".jpg"));
         jLabelUserName.setText(user.getUsername());
         jLabelNickName.setText(user.getNickname());
-        jLabelNumberOfGame.setText( "" + user.getNumberOfDraw());
+        jLabelNumberOfGame.setText( "" + user.getNumberOfGame());
         jLabelNumberOfWIn.setText(""+ user.getNumberOfWin());
         jLabelNumberOfDraw.setText("" +  user.getNumberOfDraw());
         jLabelRank.setText("" + user.getRank());
