@@ -52,20 +52,24 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jLabelNumberOfGame" alignment="0" min="-2" pref="37" max="-2" attributes="0"/>
-                                          <Component id="jLabelNumberOfWIn" alignment="0" min="-2" pref="37" max="-2" attributes="0"/>
-                                          <Component id="jLabelNumberOfDraw" alignment="0" min="-2" pref="37" max="-2" attributes="0"/>
-                                          <Component id="jLabelRank" alignment="0" min="-2" pref="37" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace max="32767" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="jLabelNickName" alignment="0" min="-2" pref="82" max="-2" attributes="0"/>
                                           <Component id="jLabelUserName" alignment="0" min="-2" pref="93" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace max="32767" attributes="0"/>
                                       <Component id="jLabelAvatar" min="-2" pref="90" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jLabelNumberOfGame" alignment="0" min="-2" pref="37" max="-2" attributes="0"/>
+                                          <Component id="jLabelNumberOfWIn" alignment="0" min="-2" pref="37" max="-2" attributes="0"/>
+                                          <Component id="jLabelNumberOfDraw" alignment="0" min="-2" pref="37" max="-2" attributes="0"/>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="jLabelRank" min="-2" pref="37" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
+                                              <Component id="jButtonInvite" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -124,6 +128,7 @@
                   <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabelRank" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnClose" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonInvite" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="33" max="32767" attributes="0"/>
           </Group>
@@ -267,6 +272,14 @@
           <Image iconType="2" name="C:\Users\phamv\Downloads\DuoiHinhBatChuClient\assets\game\anhnen.png"/>
         </Property>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonInvite">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Invite"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonInviteActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

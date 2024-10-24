@@ -5,7 +5,6 @@
  */
 package controller;
 
-import static controller.Client.homePageFrm;
 import model.User;
 
 import javax.swing.*;
@@ -14,6 +13,8 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
+
+import view.GameClientFrm;
 import view.HomePageFrm;
 import view.OnlineUsersFrame;
 import java.io.BufferedWriter;
@@ -23,11 +24,15 @@ import java.io.BufferedWriter;
  */
 public class SocketHandle implements Runnable {
 
+
     private BufferedWriter outputWriter;
     private Socket socketOfClient;
     private OnlineUsersFrame onlineUsersFrame;
     private HomePageFrm homePageFrm;
     private Socket socket;
+    private  GameClientFrm gameClientFrm;
+    private int client1CorrectAnswers = -1;
+    private int client2CorrectAnswers = -1;
 
     public List<User> getListUser(String[] message) {
         List<User> friend = new ArrayList<>();
@@ -93,6 +98,15 @@ public class SocketHandle implements Runnable {
                     Client.user = getUserFromString(1, messageSplit);
                     Client.openView(Client.View.HOMEPAGE);
                 }
+                // xử lý kết quả chơi game
+                if (messageSplit[0].equals("user-win")) {
+                    System.out.println("nhan ket qua choi game");
+                    handleCorrectAnswers(messageSplit[1]);
+                }
+                //Xử lý kết quả ván chơi
+//                if (messageSplit[0].equals("result")) {
+//                    gameClientFrm.handleResultMessage(message);
+//                }
                 // Xử lý danh sách người dùng online
 
                 if (messageSplit[0].equals("online-users")) {
@@ -380,6 +394,38 @@ public class SocketHandle implements Runnable {
 
     public Socket getSocketOfClient() {
         return socketOfClient;
+    }
+
+    private void handleCorrectAnswers(String correctAnswersStr) {
+        int correctAnswers = Integer.parseInt(correctAnswersStr);
+        if (client1CorrectAnswers == -1) {
+            client1CorrectAnswers = correctAnswers;
+        } else {
+            client2CorrectAnswers = correctAnswers;
+            determineWinner();
+        }
+    }
+
+    private void determineWinner() {
+        String result;
+        if (client1CorrectAnswers > client2CorrectAnswers) {
+            result = "Client 1 wins!";
+        } else if (client1CorrectAnswers < client2CorrectAnswers) {
+            result = "Client 2 wins!";
+        } else {
+            result = "It's a draw!";
+        }
+        sendResultToClients(result);
+    }
+
+    private void sendResultToClients(String result) {
+        try {
+            outputWriter.write("result," + result);
+            outputWriter.newLine();
+            outputWriter.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }
