@@ -11,6 +11,8 @@ import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -51,7 +53,7 @@ public class HomePageFrm extends javax.swing.JFrame {
             winRatioValue.setText(String.format("%.2f", (float) Client.user.getNumberOfWin() / Client.user.getNumberOfGame() * 100) + "%");
         }
         drawValue.setText("" + Client.user.getNumberOfDraw());
-        markValue.setText("" + (Client.user.getNumberOfGame() + Client.user.getNumberOfWin() * 10));
+        markValue.setText("" + (Client.user.getScore()));
         rankValue.setText("" + Client.user.getRank());
     
         setVisible(true); // Hiển thị giao diện
@@ -536,7 +538,12 @@ public class HomePageFrm extends javax.swing.JFrame {
     }//GEN-LAST:event_messageInputKeyPressed
 
     private void statusButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusButtonActionPerformed
-         onlineUsersFrame.setVisible(true);
+        try {
+            Client.socketHandle.write("check-onlien,");
+        } catch (IOException ex) {
+            Logger.getLogger(HomePageFrm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        onlineUsersFrame.setVisible(true);
     }//GEN-LAST:event_statusButtonActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed

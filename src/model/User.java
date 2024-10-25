@@ -20,6 +20,20 @@ public class User {
     private boolean online;
     private boolean playing;
     private int rank;
+    private double score ;
+
+           public User(int ID, String username, String password, String nickname, String avatar, int numberOfGame, int numberOfWin, int numberOfDraw, int rank , double score) {
+        this.ID = ID;
+        this.username = username;
+        this.password = password;
+        this.nickname = nickname;
+        this.avatar = avatar;
+        this.numberOfGame = numberOfGame;
+        this.numberOfWin = numberOfWin;
+        this.numberOfDraw = numberOfDraw;
+        this.rank = rank;
+        this.score = score;
+    }
 
     public User(int ID, String username, String password, String nickname, String avatar, int numberOfGame, int numberOfWin, int numberOfDraw, int rank) {
         this.ID = ID;
@@ -32,6 +46,7 @@ public class User {
         this.numberOfDraw = numberOfDraw;
         this.rank = rank;
     }
+    
 
     public User(int ID, String username, String password, String nickname, String avatar, int numberOfGame, int numberOfWin, int numberOfDraw, boolean online, boolean playing) {
         this.ID = ID;
@@ -58,7 +73,7 @@ public class User {
     }
 
 
-        public User( String username, String nickname, String avatar, int numberOfGame, int numberOfWin, int numberOfDraw, int rank) {
+        public User( String username, String nickname, String avatar, int numberOfGame, int numberOfWin, int numberOfDraw, int rank, double score) {
         this.username = username;
         this.nickname = nickname;
         this.avatar = avatar;
@@ -66,6 +81,7 @@ public class User {
         this.numberOfWin = numberOfWin;
         this.numberOfDraw = numberOfDraw;
         this.rank = rank;
+        this.score = score;
     }
 
     public User(int ID, String nickname) {
@@ -128,6 +144,15 @@ public class User {
         this.password = password;
     }
 
+        public double getScore(){
+        return score;
+    }
+    
+    public void setScore(double score )
+    {
+        this.score = score;
+    }
+    
     public String getNickname() {
         return nickname;
     }

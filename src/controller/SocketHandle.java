@@ -71,7 +71,9 @@ public class SocketHandle implements Runnable {
                 Integer.parseInt(message[start + 5]),
                 Integer.parseInt(message[start + 6]),
                 Integer.parseInt(message[start + 7]),
-                Integer.parseInt(message[start + 8]));
+                Integer.parseInt(message[start + 8]),
+                Double.parseDouble(message[start + 9]));
+
     }
 
     @Override
@@ -94,7 +96,7 @@ public class SocketHandle implements Runnable {
                 }
                 //Đăng nhập thành công
                 if (messageSplit[0].equals("login-success")) {
-                    System.out.println("Đăng nhập thành công");
+                    System.out.println("login thanh cong");
                     Client.closeAllViews();
                     Client.user = getUserFromString(1, messageSplit);
                     Client.openView(Client.View.HOMEPAGE);
@@ -103,8 +105,9 @@ public class SocketHandle implements Runnable {
                 if (messageSplit[0].equals("user-winner")) {
                     System.out.println("ban da thang");
                    
-                     Client.gameClientFrm.showWinMessage(); 
-                    
+                    Client.gameClientFrm.showWinMessage(); 
+                     
+                    write("win,");  
                 }
                 if (messageSplit[0].equals("user-loser")) {
                     System.out.println("ban da thua");
@@ -114,8 +117,10 @@ public class SocketHandle implements Runnable {
                    if (messageSplit[0].equals("user-tie")) {
                     System.out.println("ban da hoa");
                     Client.gameClientFrm.showTieMessage();
+                    
+                    write("tie,");
                 }
-                   
+
                 if (messageSplit[0].equals("online-users")) {
                     System.out.println("Received online users message: " + message);  // Debug output
                     String[] users = messageSplit[1].split(";");
@@ -127,20 +132,21 @@ public class SocketHandle implements Runnable {
                             String avatar = userParts[0].trim();
 
 
-            String nickname = userParts[1].trim();
-            String username = userParts[2].trim();
+                            String nickname = userParts[1].trim();
+                            String username = userParts[2].trim();
 
-            int numberOfGame =  Integer.parseInt(userParts[3].trim());
-            int numberOfWin = Integer.parseInt(userParts[4].trim());
-            int numberOfDraw = Integer.parseInt(userParts[5].trim());
-            int rank = Integer.parseInt(userParts[6].trim());
-            // Khởi tạo đối tượng User
-            User user = new User(  username,  nickname,  avatar,  numberOfGame,  numberOfWin,  numberOfDraw, rank) ;
-            onlineUsers.add(user);
-        } else {
-            System.out.println("Dữ liệu người dùng không hợp lệ: " + userInfo);
-        }
-    }
+                            int numberOfGame = Integer.parseInt(userParts[3].trim());
+                            int numberOfWin = Integer.parseInt(userParts[4].trim());
+                            int numberOfDraw = Integer.parseInt(userParts[5].trim());
+                            int rank = Integer.parseInt(userParts[6].trim());
+                            Double score = Double.parseDouble(userParts[7].trim());
+                            // Khởi tạo đối tượng User
+                            User user = new User(username, nickname, avatar, numberOfGame, numberOfWin, numberOfDraw, rank, score);
+                            onlineUsers.add(user);
+                        } else {
+                            System.out.println("Dữ liệu người dùng không hợp lệ: " + userInfo);
+                        }
+                    }
 
 
                     try {
@@ -319,7 +325,7 @@ public class SocketHandle implements Runnable {
 
                 if (messageSplit[0].equals("new-game")) {
                     System.out.println("New game");
-                    Thread.sleep(4000);
+//                    Thread.sleep(4000);
                     Client.gameClientFrm.updateNumberOfGame();
                     Client.closeView(Client.View.GAME_NOTICE);
                     Client.gameClientFrm.newgame();
@@ -334,14 +340,14 @@ public class SocketHandle implements Runnable {
                     Client.closeView(Client.View.GAME_NOTICE);
                     Client.gameClientFrm.newgame();
                 }
-                if (messageSplit[0].equals("competitor-time-out")) {
-                    Client.gameClientFrm.increaseWinMatchToUser();
-                    Client.openView(Client.View.GAME_NOTICE, "Bạn đã thắng do đối thủ quá thới gian", "Đang thiết lập ván chơi mới");
-                    Thread.sleep(4000);
-                    Client.closeView(Client.View.GAME_NOTICE);
-                    Client.gameClientFrm.updateNumberOfGame();
-                    Client.gameClientFrm.newgame();
-                }
+//                if (messageSplit[0].equals("competitor-time-out")) {
+//                    Client.gameClientFrm.increaseWinMatchToUser();
+//                    Client.openView(Client.View.GAME_NOTICE, "Bạn đã thắng do đối thủ quá thới gian", "Đang thiết lập ván chơi mới");
+//                    Thread.sleep(4000);
+//                    Client.closeView(Client.View.GAME_NOTICE);
+//                    Client.gameClientFrm.updateNumberOfGame();
+//                    Client.gameClientFrm.newgame();
+//                }
 
                 if (messageSplit[0].equals("left-room")) {
                     Client.gameClientFrm.stopTimer();
