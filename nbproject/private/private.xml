@@ -3,17 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/phamv/Downloads/DuoiHinhBatChuClient/src/view/UserDetailFrm.java</file>
-            <file>file:/C:/Users/phamv/Downloads/DuoiHinhBatChuClient/src/controller/SocketHandle.java</file>
+            <file>file:/C:/Users/phamv/Downloads/DuoiHinhBatChuClient/src/view/RankFrm.java</file>
             <file>file:/C:/Users/phamv/Downloads/DuoiHinhBatChuClient/src/view/CreateRoomPasswordFrm.java</file>
-            <file>file:/C:/Users/phamv/Downloads/DuoiHinhBatChuClient/src/view/OnlineUsersFrame.java</file>
-            <file>file:/C:/Users/phamv/Downloads/DuoiHinhBatChuClient/src/view/RegisterFrm.java</file>
+            <file>file:/C:/Users/phamv/Downloads/DuoiHinhBatChuClient/src/controller/SocketHandle.java</file>
             <file>file:/C:/Users/phamv/Downloads/DuoiHinhBatChuClient/src/view/FindRoomFrm.java</file>
-            <file>file:/C:/Users/phamv/Downloads/DuoiHinhBatChuClient/src/view/GameClientFrm.java</file>
-            <file>file:/C:/Users/phamv/Downloads/DuoiHinhBatChuClient/src/view/FriendRequestFrm.java</file>
             <file>file:/C:/Users/phamv/Downloads/DuoiHinhBatChuClient/src/view/CompetitorInfoFrm.java</file>
             <file>file:/C:/Users/phamv/Downloads/DuoiHinhBatChuClient/src/view/LoginFrm.java</file>
             <file>file:/C:/Users/phamv/Downloads/DuoiHinhBatChuClient/src/view/HomePageFrm.java</file>
+            <file>file:/C:/Users/phamv/Downloads/DuoiHinhBatChuClient/src/view/UserDetailFrm.java</file>
+            <file>file:/C:/Users/phamv/Downloads/DuoiHinhBatChuClient/src/view/OnlineUsersFrame.java</file>
+            <file>file:/C:/Users/phamv/Downloads/DuoiHinhBatChuClient/src/view/RegisterFrm.java</file>
+            <file>file:/C:/Users/phamv/Downloads/DuoiHinhBatChuClient/src/view/FriendRequestFrm.java</file>
+            <file>file:/C:/Users/phamv/Downloads/DuoiHinhBatChuClient/src/view/GameClientFrm.java</file>
             <file>file:/C:/Users/phamv/Downloads/DuoiHinhBatChuClient/src/view/ViewHistoryFrm.java</file>
         </group>
     </open-files>

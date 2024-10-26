@@ -166,10 +166,10 @@ public class SocketHandle implements Runnable {
 
                 if (messageSplit[0].equals("online-users")) {
 
-                    System.out.println("hahahahahah " + Client.user.getID());
+                   
                     String[] mesUserId = messageSplit[1].split("!");
                     int userId = Integer.parseInt(mesUserId[0]);
-                    System.out.println("hahahahahah " + userId);
+                   
                     if (userId == Client.user.getID()) {
 
 
