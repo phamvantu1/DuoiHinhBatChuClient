@@ -21,6 +21,8 @@ import java.util.List;
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.TimerTask;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -173,6 +175,7 @@ public class GameClientFrm extends javax.swing.JFrame {
         answerField = new javax.swing.JTextField();
         submitBut = new javax.swing.JButton();
         jButtonClose = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         playerLabel = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
@@ -292,10 +295,19 @@ public class GameClientFrm extends javax.swing.JFrame {
 
         jButtonClose.setBackground(new java.awt.Color(255, 102, 102));
         jButtonClose.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButtonClose.setText("Close");
+        jButtonClose.setText("Rời trận");
         jButtonClose.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCloseActionPerformed(evt);
+            }
+        });
+
+        jButton1.setBackground(new java.awt.Color(255, 51, 51));
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton1.setText("Close");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -314,10 +326,14 @@ public class GameClientFrm extends javax.swing.JFrame {
                             .addComponent(answerField, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(gamePanelLayout.createSequentialGroup()
                                 .addGap(53, 53, 53)
-                                .addGroup(gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jButtonClose)
-                                    .addComponent(submitBut))))))
+                                .addComponent(submitBut)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(gamePanelLayout.createSequentialGroup()
+                .addGap(66, 66, 66)
+                .addComponent(jButtonClose)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(57, 57, 57))
         );
         gamePanelLayout.setVerticalGroup(
             gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -329,7 +345,9 @@ public class GameClientFrm extends javax.swing.JFrame {
                 .addGap(35, 35, 35)
                 .addComponent(submitBut)
                 .addGap(42, 42, 42)
-                .addComponent(jButtonClose)
+                .addGroup(gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonClose)
+                    .addComponent(jButton1))
                 .addGap(36, 36, 36))
         );
 
@@ -589,9 +607,20 @@ public class GameClientFrm extends javax.swing.JFrame {
     private void jButtonCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCloseActionPerformed
         // TODO add your handling code here:
         this.dispose();
+        try {
+            Client.socketHandle.write("client2-leave," + Client.user.getID());
+        } catch (IOException ex) {
+            Logger.getLogger(GameClientFrm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         Client.homePageFrm.dispose();
         Client.openView(Client.View.HOMEPAGE);
     }//GEN-LAST:event_jButtonCloseActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
     
     private String correctAnswer;
     private int correctAnswerCount = 0;
@@ -689,6 +718,7 @@ public class GameClientFrm extends javax.swing.JFrame {
     private javax.swing.JLabel competotorNumberOfGameValue;
     private javax.swing.JPanel gamePanel;
     private javax.swing.JPanel imagePanel;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonClose;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JFrame jFrame2;

@@ -116,6 +116,29 @@ public class SocketHandle implements Runnable {
                     write("win,");
                     write("win-history,"); // them lich su
                 }
+
+                if (messageSplit[0].equals("win-because-leave")) {
+                   String mesId = messageSplit[1];
+                   int userWinId = Integer.parseInt(mesId);
+                    System.out.println("userWinId: " + userWinId);
+                    System.out.println("toi la " + Client.user.getID());
+                   if (userWinId != Client.user.getID()){
+                       System.out.println("ban da thang" );
+
+                       Client.gameClientFrm.increaseWinMatchToUser();
+                       Client.gameClientFrm.showWinMessage();
+
+                       write("win-because-stay,");
+                       write("win-history,"); // them lich su
+
+                       Client.closeView(Client.View.GAME_CLIENT);
+                       Client.openView(Client.View.HOMEPAGE);
+
+                   }else {
+                       Client.closeView(Client.View.GAME_CLIENT);
+                   }
+                }
+
                 if (messageSplit[0].equals("user-loser")) {
                     System.out.println("ban da thua");
                     Client.gameClientFrm.showLoserMessage();
@@ -123,6 +146,22 @@ public class SocketHandle implements Runnable {
                     write("lose-history,"); // them lich su
                     
                 }
+
+
+                if (messageSplit[0].equals("lose-because-leave")) {
+                    String mesId = messageSplit[1];
+                    int userWinId = Integer.parseInt(mesId);
+                    System.out.println("userWinId: " + userWinId);
+                    System.out.println("toi la " + Client.user.getID());
+                    if (userWinId == Client.user.getID()){
+                        System.out.println("ban da thua");
+
+                        write("lose-history-leave,"); // them lich su
+                    }
+
+
+                }
+
                    if (messageSplit[0].equals("user-tie")) {
                     System.out.println("ban da hoa");
                     Client.gameClientFrm.showTieMessage();
