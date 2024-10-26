@@ -69,14 +69,53 @@ public class GameClientFrm extends javax.swing.JFrame {
 
      public void showWinMessage() {
         JOptionPane.showMessageDialog(this, "Bạn thắng , +2 điểm", "Thắng", JOptionPane.INFORMATION_MESSAGE);
+         // Hiển thị hộp thoại xác nhận
+    int choice = JOptionPane.showConfirmDialog(this, 
+            "Bạn có muốn chơi tiếp không?", 
+            "Tiếp tục?", 
+            JOptionPane.YES_NO_OPTION, 
+            JOptionPane.QUESTION_MESSAGE);
+
+    // Xử lý dựa trên lựa chọn của người dùng
+    if (choice == JOptionPane.NO_OPTION) {
+        // Đóng giao diện
+        Client.closeView(Client.View.GAME_CLIENT);
+        Client.openView(Client.View.HOMEPAGE);
+    }
     }
      
          public void showLoserMessage() {
         JOptionPane.showMessageDialog(this, "Hix ! Thua rồi , + 0 điểm !", "Thua", JOptionPane.INFORMATION_MESSAGE);
+         // Hiển thị hộp thoại xác nhận
+    int choice = JOptionPane.showConfirmDialog(this, 
+            "Bạn có muốn chơi tiếp không?", 
+            "Tiếp tục?", 
+            JOptionPane.YES_NO_OPTION, 
+            JOptionPane.QUESTION_MESSAGE);
+
+    // Xử lý dựa trên lựa chọn của người dùng
+    if (choice == JOptionPane.NO_OPTION) {
+        // Đóng giao diện
+        Client.closeView(Client.View.GAME_CLIENT);
+        Client.openView(Client.View.HOMEPAGE);
+    }
     }
      
              public void showTieMessage() {
         JOptionPane.showMessageDialog(this, "Hòa, + 1 điểm !!!", "Hòa", JOptionPane.INFORMATION_MESSAGE);
+         // Hiển thị hộp thoại xác nhận
+    int choice = JOptionPane.showConfirmDialog(this, 
+            "Bạn có muốn chơi tiếp không?", 
+            "Tiếp tục?", 
+            JOptionPane.YES_NO_OPTION, 
+            JOptionPane.QUESTION_MESSAGE);
+
+    // Xử lý dựa trên lựa chọn của người dùng
+    if (choice == JOptionPane.NO_OPTION) {
+        // Đóng giao diện
+         Client.closeView(Client.View.GAME_CLIENT);
+         Client.openView(Client.View.HOMEPAGE);
+    }
     }
      
              
