@@ -192,34 +192,43 @@ public class SocketHandle implements Runnable {
                     }
 
 
-                    try {
-                        // Kiểm tra nếu homePageFrm đã được khởi tạo và hiển thị
-                        if (homePageFrm != null && homePageFrm.isVisible()) {
-                            homePageFrm.updateOnlineUsers(onlineUsers);
-                            System.out.println("Danh sách người dùng đã được cập nhật");
-                        } else {
+                     onlineUsersFrame  = new OnlineUsersFrame();
 
-                            homePageFrm = new HomePageFrm();
-                            Client.closeAllViews();
+                    onlineUsersFrame.updateOnlineUsers(onlineUsers);
 
-                            homePageFrm.updateOnlineUsers(onlineUsers);
-                            System.out.println("homePageFrm chưa được khởi tạo hoặc không hiển thị");
-                        }
-                    } catch (Exception e) {
-                        e.printStackTrace();  // Debugging để xem lỗi nếu xảy ra
-                    }
+                    onlineUsersFrame.setVisible(true);
+                   
 
-                    // Hiển thị danh sách người dùng online trong giao diện mới
-                    SwingUtilities.invokeLater(() -> {
-                        // Kiểm tra nếu onlineUsersFrame chưa được khởi tạo hoặc không còn hiển thị
-                        if (onlineUsersFrame == null || !onlineUsersFrame.isVisible()) {
-                            onlineUsersFrame = new OnlineUsersFrame();
-
-                            onlineUsersFrame.dispose();
-                        }
-                        // Cập nhật danh sách người dùng online
-                        onlineUsersFrame.updateOnlineUsers(onlineUsers);
-                    });
+                     
+                    
+//                    try {
+//                        // Kiểm tra nếu homePageFrm đã được khởi tạo và hiển thị
+//                        if (homePageFrm != null && homePageFrm.isVisible()) {
+//                            homePageFrm.updateOnlineUsers(onlineUsers);
+//                            System.out.println("Danh sách người dùng đã được cập nhật");
+//                        } else {
+//
+//                            homePageFrm = new HomePageFrm();
+//                            Client.closeAllViews();
+//
+//                            homePageFrm.updateOnlineUsers(onlineUsers);
+//                            System.out.println("homePageFrm chưa được khởi tạo hoặc không hiển thị");
+//                        }
+//                    } catch (Exception e) {
+//                        e.printStackTrace();  // Debugging để xem lỗi nếu xảy ra
+//                    }
+//
+//                    // Hiển thị danh sách người dùng online trong giao diện mới
+//                    SwingUtilities.invokeLater(() -> {
+//                        // Kiểm tra nếu onlineUsersFrame chưa được khởi tạo hoặc không còn hiển thị
+//                        if (onlineUsersFrame == null || !onlineUsersFrame.isVisible()) {
+//                            onlineUsersFrame = new OnlineUsersFrame();
+//
+//                            onlineUsersFrame.dispose();
+//                        }
+//                        // Cập nhật danh sách người dùng online
+//                        onlineUsersFrame.updateOnlineUsers(onlineUsers);
+//                    });
                 }
 
                 //Thông tin tài khoản sai

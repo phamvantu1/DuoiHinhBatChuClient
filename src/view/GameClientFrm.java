@@ -99,7 +99,7 @@ public class GameClientFrm extends javax.swing.JFrame {
         this.getContentPane().setLayout(null);
 
         // Tạo ImageIcon từ đường dẫn ảnh
-        ImageIcon imageIcon = new ImageIcon("assets/dhbc/new_init/dhbc12.png");
+        ImageIcon imageIcon = new ImageIcon("assets/dhbc/new_init/anh1.gif");
 
 // Tạo JLabel chứa hình ảnh
         JLabel imageLabel = new JLabel(imageIcon);
@@ -112,7 +112,7 @@ public class GameClientFrm extends javax.swing.JFrame {
 
 // Thêm JLabel vào imagePanel
         imagePanel.add(imageLabel, BorderLayout.CENTER);
-        correctAnswer = "o_an_quan";
+        correctAnswer = "dua_hau";
 // Cập nhật và vẽ lại imagePanel
         imagePanel.revalidate();
         imagePanel.repaint();
@@ -260,15 +260,17 @@ public class GameClientFrm extends javax.swing.JFrame {
 
         gamePanel.setBackground(new java.awt.Color(227, 253, 227));
 
+        imagePanel.setPreferredSize(new java.awt.Dimension(400, 225));
+
         javax.swing.GroupLayout imagePanelLayout = new javax.swing.GroupLayout(imagePanel);
         imagePanel.setLayout(imagePanelLayout);
         imagePanelLayout.setHorizontalGroup(
             imagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 299, Short.MAX_VALUE)
+            .addGap(0, 400, Short.MAX_VALUE)
         );
         imagePanelLayout.setVerticalGroup(
             imagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 200, Short.MAX_VALUE)
+            .addGap(0, 225, Short.MAX_VALUE)
         );
 
         answerField.setBackground(new java.awt.Color(255, 250, 225));
@@ -301,10 +303,6 @@ public class GameClientFrm extends javax.swing.JFrame {
         gamePanel.setLayout(gamePanelLayout);
         gamePanelLayout.setHorizontalGroup(
             gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, gamePanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(answerField, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(75, 75, 75))
             .addGroup(gamePanelLayout.createSequentialGroup()
                 .addGroup(gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(gamePanelLayout.createSequentialGroup()
@@ -313,8 +311,12 @@ public class GameClientFrm extends javax.swing.JFrame {
                     .addGroup(gamePanelLayout.createSequentialGroup()
                         .addGap(133, 133, 133)
                         .addGroup(gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonClose)
-                            .addComponent(submitBut))))
+                            .addComponent(answerField, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(gamePanelLayout.createSequentialGroup()
+                                .addGap(53, 53, 53)
+                                .addGroup(gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jButtonClose)
+                                    .addComponent(submitBut))))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         gamePanelLayout.setVerticalGroup(
@@ -324,11 +326,11 @@ public class GameClientFrm extends javax.swing.JFrame {
                 .addComponent(imagePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(answerField, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(57, 57, 57)
+                .addGap(35, 35, 35)
                 .addComponent(submitBut)
-                .addGap(53, 53, 53)
+                .addGap(42, 42, 42)
                 .addComponent(jButtonClose)
-                .addGap(31, 31, 31))
+                .addGap(36, 36, 36))
         );
 
         jPanel2.setBackground(new java.awt.Color(102, 102, 102));
@@ -486,7 +488,7 @@ public class GameClientFrm extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
@@ -541,17 +543,14 @@ public class GameClientFrm extends javax.swing.JFrame {
         // Mảng chứa đường dẫn đến 11 ảnh
         // Mảng chứa đường dẫn đến 11 ảnh và câu trả lời tương ứng
         String[][] imagesWithAnswers = {
-                {"assets/dhbc/dhbc1.png", "1"},
-                {"assets/dhbc/dhbc2.png", "1"},
-                {"assets/dhbc/dhbc3.png", "1"},
-                {"assets/dhbc/dhbc4.png", "1"},
-                {"assets/dhbc/dhbc5.png", "1"},
-                {"assets/dhbc/dhbc6.png", "1"},
-                {"assets/dhbc/dhbc7.png", "1"},
-                {"assets/dhbc/dhbc8.png", "1"},
-                {"assets/dhbc/dhbc9.png", "1"},
-                {"assets/dhbc/dhbc10.png", "1"},
-                {"assets/dhbc/dhbc11.png", "1"}
+                {"assets/dhbc/anh2.gif", "1"},
+                {"assets/dhbc/anh3.gif", "1"},
+                {"assets/dhbc/anh4.gif", "1"},
+                {"assets/dhbc/anh5.gif", "1"},
+                {"assets/dhbc/anh6.gif", "1"},
+                {"assets/dhbc/anh7.gif", "1"},
+                {"assets/dhbc/anh8.gif", "1"},
+                {"assets/dhbc/anh9.gif", "1"}
         };
 
         // Tạo đối tượng Random để chọn ngẫu nhiên
@@ -590,6 +589,8 @@ public class GameClientFrm extends javax.swing.JFrame {
     private void jButtonCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCloseActionPerformed
         // TODO add your handling code here:
         this.dispose();
+        Client.homePageFrm.dispose();
+        Client.openView(Client.View.HOMEPAGE);
     }//GEN-LAST:event_jButtonCloseActionPerformed
     
     private String correctAnswer;

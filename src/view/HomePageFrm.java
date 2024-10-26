@@ -503,12 +503,17 @@ public class HomePageFrm extends javax.swing.JFrame {
     }//GEN-LAST:event_messageInputKeyPressed
 
     private void statusButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusButtonActionPerformed
+        
+         
+        
         try {
             Client.socketHandle.write("check-onlien,");
         } catch (IOException ex) {
             Logger.getLogger(HomePageFrm.class.getName()).log(Level.SEVERE, null, ex);
         }
-        onlineUsersFrame.setVisible(true);
+        
+       
+       
     }//GEN-LAST:event_statusButtonActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
