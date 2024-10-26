@@ -165,42 +165,47 @@ public class SocketHandle implements Runnable {
                 }
 
                 if (messageSplit[0].equals("online-users")) {
-                    System.out.println("Received online users message: " + message);  // Debug output
-                    String[] users = messageSplit[1].split(";");
-                    List<User> onlineUsers = new ArrayList<>();
 
-                    for (String userInfo : users) {
-                        String[] userParts = userInfo.split(":");
-                        if (userParts.length >= 2) {  // Đảm bảo có đủ dữ liệu nickname và avatar
-                            String avatar = userParts[0].trim();
+                    System.out.println("hahahahahah " + Client.user.getID());
+                    String[] mesUserId = messageSplit[1].split("!");
+                    int userId = Integer.parseInt(mesUserId[0]);
+                    System.out.println("hahahahahah " + userId);
+                    if (userId == Client.user.getID()) {
 
 
-                            String nickname = userParts[1].trim();
-                            String username = userParts[2].trim();
+                        String[] users = mesUserId[1].split(";");
+                        List<User> onlineUsers = new ArrayList<>();
 
-                            int numberOfGame = Integer.parseInt(userParts[3].trim());
-                            int numberOfWin = Integer.parseInt(userParts[4].trim());
-                            int numberOfDraw = Integer.parseInt(userParts[5].trim());
-                            int rank = Integer.parseInt(userParts[6].trim());
-                            Double score = Double.parseDouble(userParts[7].trim());
-                            // Khởi tạo đối tượng User
-                            User user = new User(username, nickname, avatar, numberOfGame, numberOfWin, numberOfDraw, rank, score);
-                            onlineUsers.add(user);
-                        } else {
-                            System.out.println("Dữ liệu người dùng không hợp lệ: " + userInfo);
+                        for (String userInfo : users) {
+                            String[] userParts = userInfo.split(":");
+                            if (userParts.length >= 2) {  // Đảm bảo có đủ dữ liệu nickname và avatar
+                                String avatar = userParts[0].trim();
+
+
+                                String nickname = userParts[1].trim();
+                                String username = userParts[2].trim();
+
+                                int numberOfGame = Integer.parseInt(userParts[3].trim());
+                                int numberOfWin = Integer.parseInt(userParts[4].trim());
+                                int numberOfDraw = Integer.parseInt(userParts[5].trim());
+                                int rank = Integer.parseInt(userParts[6].trim());
+                                Double score = Double.parseDouble(userParts[7].trim());
+                                // Khởi tạo đối tượng User
+                                User user = new User(username, nickname, avatar, numberOfGame, numberOfWin, numberOfDraw, rank, score);
+                                onlineUsers.add(user);
+                            } else {
+                                System.out.println("Dữ liệu người dùng không hợp lệ: " + userInfo);
+                            }
                         }
-                    }
 
 
-                     onlineUsersFrame  = new OnlineUsersFrame();
+                        onlineUsersFrame = new OnlineUsersFrame();
 
-                    onlineUsersFrame.updateOnlineUsers(onlineUsers);
+                        onlineUsersFrame.updateOnlineUsers(onlineUsers);
 
-                    onlineUsersFrame.setVisible(true);
-                   
+                        onlineUsersFrame.setVisible(true);
 
-                     
-                    
+
 //                    try {
 //                        // Kiểm tra nếu homePageFrm đã được khởi tạo và hiển thị
 //                        if (homePageFrm != null && homePageFrm.isVisible()) {
@@ -229,6 +234,7 @@ public class SocketHandle implements Runnable {
 //                        // Cập nhật danh sách người dùng online
 //                        onlineUsersFrame.updateOnlineUsers(onlineUsers);
 //                    });
+                    }
                 }
 
                 //Thông tin tài khoản sai
@@ -260,7 +266,7 @@ public class SocketHandle implements Runnable {
                 //Xử lý nhận thông tin, chat từ toàn server
                 if (messageSplit[0].equals("chat-server")) {
                     if (Client.homePageFrm != null) {
-                        Client.homePageFrm.addMessage(messageSplit[1]);
+//                        Client.homePageFrm.addMessage(messageSplit[1]);
                     }
                 }
                 //Xử lý hiển thị thông tin đối thủ là bạn bè/không
