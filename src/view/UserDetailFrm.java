@@ -29,7 +29,7 @@ public class UserDetailFrm extends javax.swing.JFrame {
         jLabelNumberOfWIn.setText(""+ user.getNumberOfWin());
         jLabelNumberOfDraw.setText("" +  user.getNumberOfDraw());
         jLabelScore.setText("" + user.getScore());
-       
+        jLabel1.setIcon(new ImageIcon("assets/game/anhnen.png"));
                 
     }
 
@@ -109,8 +109,6 @@ public class UserDetailFrm extends javax.swing.JFrame {
         jLabelScore.setText("5");
 
         jLabelAvatar.setText("avatar");
-
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\phamv\\Downloads\\DuoiHinhBatChuClient\\assets\\game\\anhnen.png")); // NOI18N
 
         jButtonInvite.setBackground(new java.awt.Color(51, 255, 255));
         jButtonInvite.setText("Invite");
@@ -202,7 +200,7 @@ public class UserDetailFrm extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonInvite)
                     .addComponent(btnClose))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(264, Short.MAX_VALUE))
         );
 
         pack();

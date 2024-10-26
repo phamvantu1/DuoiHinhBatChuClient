@@ -28,6 +28,7 @@ public class RegisterFrm extends javax.swing.JFrame {
         this.setResizable(false);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
+        jLabel1.setIcon(new ImageIcon("assets/game/dki.jpg"));
         avatarComboBox.setMaximumRowCount(5);
         for (int i = 0; i <= 5; i++) {
             avatarComboBox.addItem(new ImageIcon("assets/avatar/" + i + ".jpg"));
@@ -85,8 +86,6 @@ public class RegisterFrm extends javax.swing.JFrame {
 
         avatarLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         avatarLabel.setText("Chọn Avatar");
-
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\phamv\\Downloads\\DuoiHinhBatChuClient\\assets\\game\\dki.jpg")); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

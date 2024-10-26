@@ -23,6 +23,7 @@ public class ViewHistoryFrm extends javax.swing.JFrame {
         initComponents();
         this.setTitle("Duoi Hinh Bat Chu Nhom 1");
         this.setIconImage(new ImageIcon("assets/image/caroicon.png").getImage());
+        jLabel2.setIcon(new ImageIcon("assets/game/anhnen.png"));
     }
     
  public void updateHistory(List<History> historyList) {
@@ -76,8 +77,7 @@ public class ViewHistoryFrm extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\phamv\\Downloads\\DuoiHinhBatChuClient\\assets\\game\\anhnen.png")); // NOI18N
-        jLabel2.setText("jLabel2");
+        jLabel2.setText("day la anh nen");
 
         tableResult.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -126,7 +126,7 @@ public class ViewHistoryFrm extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 277, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(31, 31, 31))
         );

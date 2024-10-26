@@ -122,9 +122,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\phamv\Downloads\DuoiHinhBatChuClient\assets\game\anhnen.png"/>
-        </Property>
+        <Property name="text" type="java.lang.String" value="day la anh nen"/>
       </Properties>
     </Component>
   </SubComponents>

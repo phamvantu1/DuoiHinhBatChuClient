@@ -22,6 +22,7 @@ public class LoginFrm extends javax.swing.JFrame {
         initComponents();
         this.setTitle("Duoi Hinh Bat Chu Nhom 1");
         this.setIconImage(new ImageIcon("assets/image/icon.png").getImage());
+        jLabel1.setIcon(new ImageIcon("assets/game/anhnen.png"));
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
@@ -85,7 +86,7 @@ public class LoginFrm extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\phamv\\Downloads\\DuoiHinhBatChuClient\\assets\\game\\anhnen.png")); // NOI18N
+        jLabel1.setText("day la anh nen");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
