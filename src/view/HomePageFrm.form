@@ -71,8 +71,8 @@
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="playWithBotButton" pref="127" max="32767" attributes="0"/>
-                                  <Component id="statusButton" max="32767" attributes="0"/>
+                                  <Component id="statusButton" pref="127" max="32767" attributes="0"/>
+                                  <Component id="jButtonHistory" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -110,8 +110,8 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="findRoomButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="playWithBotButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="friendListButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonHistory" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -193,7 +193,6 @@
                               <Component id="drawLabel" alignment="0" pref="77" max="32767" attributes="0"/>
                               <Component id="markLabel" alignment="0" min="-2" pref="34" max="-2" attributes="0"/>
                               <Component id="winRatioLabel" alignment="0" max="32767" attributes="0"/>
-                              <Component id="rankLabel" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -201,7 +200,6 @@
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                       <Component id="winRatioValue" max="32767" attributes="0"/>
-                                      <Component id="rankValue" min="-2" pref="90" max="-2" attributes="0"/>
                                       <Component id="drawValue" alignment="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="0" pref="24" max="32767" attributes="0"/>
@@ -253,18 +251,13 @@
                               <Component id="markValue" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="markLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="rankLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="rankValue" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                           <Component id="jLabel8" min="-2" pref="90" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="28" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -347,22 +340,6 @@
             <Property name="text" type="java.lang.String" value="{day la diem}"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="rankLabel">
-          <Properties>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Th&#x1ee9; h&#x1ea1;ng"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="rankValue">
-          <Properties>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="{day la thu hang}"/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JLabel" name="winRatioLabel">
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -428,17 +405,6 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="quickGameButtonActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="playWithBotButton">
-      <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="ff" red="66" type="rgb"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Ch&#x1a1;i v&#x1edb;i m&#xe1;y"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="playWithBotButtonActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="friendListButton">
@@ -529,6 +495,17 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField1ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonHistory">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="66" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Xem l&#x1ecb;ch s&#x1eed;"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonHistoryActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

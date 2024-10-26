@@ -105,6 +105,12 @@ public class Client {
                 case ROOM_NAME_FRM:
                     roomNameFrm = new RoomNameFrm();
                     roomNameFrm.setVisible(true);
+                    break;
+
+                case VIEW_HISTORY:
+                    ViewHistoryFrm viewHistoryFrm = new ViewHistoryFrm();
+                    viewHistoryFrm.setVisible(true);
+
             }
         }
     }
@@ -184,7 +190,7 @@ public class Client {
                     break;
 
                 case GAME_CLIENT:
-                    gameClientFrm.stopAllThread();
+//                    gameClientFrm.stopAllThread();
                     gameClientFrm.dispose();
                     break;
 
@@ -232,7 +238,7 @@ public class Client {
         }
         if (waitingRoomFrm != null) waitingRoomFrm.dispose();
         if (gameClientFrm != null) {
-            gameClientFrm.stopAllThread();
+//            gameClientFrm.stopAllThread();
             gameClientFrm.dispose();
         }
         if (createRoomPasswordFrm != null) createRoomPasswordFrm.dispose();
@@ -273,6 +279,7 @@ public class Client {
         GAME_NOTICE,
         FRIEND_REQUEST,
         GAME_AI,
-        ROOM_NAME_FRM
+        ROOM_NAME_FRM,
+        VIEW_HISTORY
     }
 }

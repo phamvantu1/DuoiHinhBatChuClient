@@ -6,6 +6,8 @@
 package controller;
 
 import java.awt.Color;
+
+import model.History;
 import model.User;
 
 import javax.swing.*;
@@ -18,6 +20,8 @@ import java.util.Vector;
 import view.GameClientFrm;
 import view.HomePageFrm;
 import view.OnlineUsersFrame;
+import view.ViewHistoryFrm;
+
 import java.io.BufferedWriter;
 
 /**
@@ -30,6 +34,7 @@ public class SocketHandle implements Runnable {
     private Socket socketOfClient;
     private OnlineUsersFrame onlineUsersFrame;
     private HomePageFrm homePageFrm;
+    private ViewHistoryFrm viewHistoryFrm;
     private Socket socket;
     private  GameClientFrm gameClientFrm;
     private int client1CorrectAnswers = -1;
@@ -107,11 +112,14 @@ public class SocketHandle implements Runnable {
                    
                     Client.gameClientFrm.showWinMessage(); 
                      
-                    write("win,");  
+                    write("win,");
+                    write("win-history,");
                 }
                 if (messageSplit[0].equals("user-loser")) {
                     System.out.println("ban da thua");
                     Client.gameClientFrm.showLoserMessage();
+
+                    write("lose-history,");
                     
                 }
                    if (messageSplit[0].equals("user-tie")) {
@@ -119,6 +127,34 @@ public class SocketHandle implements Runnable {
                     Client.gameClientFrm.showTieMessage();
                     
                     write("tie,");
+                    write("tie-history,");
+                }
+
+                if (messageSplit[0].equals("return-history")) {
+                   String[] mess = messageSplit[1].split(";");
+                   List<History> listHistory = new ArrayList<>();
+                     for (String history : mess) {
+                        String[] historyParts = history.split(":");
+                        if (historyParts.length >= 2) {  // Đảm bảo có đủ dữ liệu nickname và avatar
+                            String nameUser1 = historyParts[0].trim();
+                            String nameUser2 = historyParts[1].trim();
+                            String status = historyParts[2].trim();
+                            // Khởi tạo đối tượng User
+                            History new_history = new History(nameUser1, nameUser2, status);
+                            listHistory.add(new_history);
+                        } else {
+                            System.out.println("Dữ liệu người dùng không hợp lệ: " + history);
+                        }
+
+                     }
+
+                    viewHistoryFrm = new ViewHistoryFrm();
+
+                    viewHistoryFrm.updateHistory(listHistory);
+
+                    viewHistoryFrm.setVisible(true);
+
+
                 }
 
                 if (messageSplit[0].equals("online-users")) {
@@ -325,7 +361,6 @@ public class SocketHandle implements Runnable {
 
                 if (messageSplit[0].equals("new-game")) {
                     System.out.println("New game");
-//                    Thread.sleep(4000);
                     Client.gameClientFrm.updateNumberOfGame();
                     Client.closeView(Client.View.GAME_NOTICE);
                     Client.gameClientFrm.newgame();
@@ -340,23 +375,16 @@ public class SocketHandle implements Runnable {
                     Client.closeView(Client.View.GAME_NOTICE);
                     Client.gameClientFrm.newgame();
                 }
-//                if (messageSplit[0].equals("competitor-time-out")) {
-//                    Client.gameClientFrm.increaseWinMatchToUser();
-//                    Client.openView(Client.View.GAME_NOTICE, "Bạn đã thắng do đối thủ quá thới gian", "Đang thiết lập ván chơi mới");
-//                    Thread.sleep(4000);
-//                    Client.closeView(Client.View.GAME_NOTICE);
-//                    Client.gameClientFrm.updateNumberOfGame();
-//                    Client.gameClientFrm.newgame();
-//                }
 
-                if (messageSplit[0].equals("left-room")) {
-                    Client.gameClientFrm.stopTimer();
-                    Client.closeAllViews();
-                    Client.openView(Client.View.GAME_NOTICE, "Đối thủ đã thoát khỏi phòng", "Đang trở về trang chủ");
-                    Thread.sleep(3000);
-                    Client.closeAllViews();
-                    Client.openView(Client.View.HOMEPAGE);
+                if (messageSplit[0].equals("competitor-time-outoomllll")) {
+                    Client.gameClientFrm.increaseWinMatchToUser();
+                    Client.openView(Client.View.GAME_NOTICE, "Bạn đã thắng do đối thủ quá thới gian", "Đang thiết lập ván chơi mới");
+                    Thread.sleep(4000);
+                    Client.closeView(Client.View.GAME_NOTICE);
+                    Client.gameClientFrm.updateNumberOfGame();
+                    Client.gameClientFrm.newgame();
                 }
+
 
             }
         } catch (Exception e) {

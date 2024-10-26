@@ -43,7 +43,7 @@ public class GameClientFrm extends javax.swing.JFrame {
     private final User competitor;
 
     private final int size = 15;
-    private final Timer timer;
+//    private final Timer timer;
     private Integer second;
     private Integer minute;
     private int numberOfMatch;
@@ -66,15 +66,15 @@ public class GameClientFrm extends javax.swing.JFrame {
     }
 
      public void showWinMessage() {
-        JOptionPane.showMessageDialog(this, "Chúc mừng! Bạn đã thắng!", "Thắng", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Bạn thắng , +2 điểm", "Thắng", JOptionPane.INFORMATION_MESSAGE);
     }
      
          public void showLoserMessage() {
-        JOptionPane.showMessageDialog(this, "Hix ! Thua rồi !", "Thua", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Hix ! Thua rồi , + 0 điểm !", "Thua", JOptionPane.INFORMATION_MESSAGE);
     }
      
              public void showTieMessage() {
-        JOptionPane.showMessageDialog(this, "Hòa !!!", "Hòa", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Hòa, + 1 điểm !!!", "Hòa", JOptionPane.INFORMATION_MESSAGE);
     }
      
              
@@ -134,72 +134,12 @@ public class GameClientFrm extends javax.swing.JFrame {
         competotorButtonImage.setIcon(new ImageIcon("assets/game/" + competitor.getAvatar() + ".jpg"));
         competotorButtonImage.setToolTipText("Xem thông tin đối thủ");
 
-        countDownLabel.setVisible(false);
+       
         messageTextArea.setEditable(false);
-        scoreLabel.setText("Tỉ số: 0-0");
-
-        //Setup timer
-        second = 60;
-        minute = 0;
-        timer = new Timer(1000, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String temp = minute.toString();
-                String temp1 = second.toString();
-                if (temp.length() == 1) {
-                    temp = "0" + temp;
-                }
-                if (temp1.length() == 1) {
-                    temp1 = "0" + temp1;
-                }
-                if (second == 0) {
-                    countDownLabel.setText("Thời Gian:" + temp + ":" + temp1);
-                    second = 60;
-                    minute = 0;
-                    try {
-                        Client.openView(Client.View.GAME_CLIENT, "Bạn đã thua do quá thời gian", "Đang thiết lập ván chơi mới");
-                        increaseWinMatchToCompetitor();
-                        Client.socketHandle.write("lose,");
-                    } catch (IOException ex) {
-                        JOptionPane.showMessageDialog(rootPane, ex.getMessage());
-                    }
-
-                } else {
-                    countDownLabel.setText("Thời Gian:" + temp + ":" + temp1);
-                    second--;
-                }
-
-            }
-
-        });
-
-        this.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                exitGame();
-            }
-        });
 
     }
 
-    public void exitGame() {
-        try {
-            timer.stop();
 
-            Client.socketHandle.write("left-room,");
-            Client.closeAllViews();
-            Client.openView(Client.View.HOMEPAGE);
-        } catch (IOException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage());
-        }
-        Client.closeAllViews();
-        Client.openView(Client.View.HOMEPAGE);
-    }
-
-    public void stopAllThread() {
-        timer.stop();
-
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -229,7 +169,6 @@ public class GameClientFrm extends javax.swing.JFrame {
         competitorNicknameValue = new javax.swing.JLabel();
         competotorNumberOfGameValue = new javax.swing.JLabel();
         competitorNumberOfWinValue = new javax.swing.JLabel();
-        countDownLabel = new javax.swing.JLabel();
         gamePanel = new javax.swing.JPanel();
         imagePanel = new javax.swing.JPanel();
         answerField = new javax.swing.JTextField();
@@ -241,7 +180,6 @@ public class GameClientFrm extends javax.swing.JFrame {
         competitorLabel = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         roomNameLabel = new javax.swing.JLabel();
-        scoreLabel = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         playerButtonImage = new javax.swing.JLabel();
         vsIcon = new javax.swing.JLabel();
@@ -294,6 +232,7 @@ public class GameClientFrm extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAutoRequestFocus(false);
+        setBackground(new java.awt.Color(204, 255, 204));
 
         playerNumberOfWinLabel.setText("Số ván thắng");
 
@@ -323,10 +262,6 @@ public class GameClientFrm extends javax.swing.JFrame {
         competotorNumberOfGameValue.setText("{sovanchoi}");
 
         competitorNumberOfWinValue.setText("{sovanthang}");
-
-        countDownLabel.setForeground(new java.awt.Color(255, 0, 0));
-        countDownLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        countDownLabel.setText("Thời gian:00:20");
 
         gamePanel.setBackground(new java.awt.Color(227, 253, 227));
 
@@ -372,16 +307,16 @@ public class GameClientFrm extends javax.swing.JFrame {
         gamePanelLayout.setHorizontalGroup(
             gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, gamePanelLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(answerField, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(69, 69, 69))
+                .addGap(75, 75, 75))
             .addGroup(gamePanelLayout.createSequentialGroup()
                 .addGroup(gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(gamePanelLayout.createSequentialGroup()
-                        .addContainerGap()
+                        .addGap(21, 21, 21)
                         .addComponent(imagePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(gamePanelLayout.createSequentialGroup()
-                        .addGap(115, 115, 115)
+                        .addGap(133, 133, 133)
                         .addGroup(gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButtonClose)
                             .addComponent(submitBut))))
@@ -392,13 +327,13 @@ public class GameClientFrm extends javax.swing.JFrame {
             .addGroup(gamePanelLayout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addComponent(imagePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(54, 54, 54)
-                .addComponent(answerField, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(63, 63, 63)
-                .addComponent(submitBut)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(answerField, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(57, 57, 57)
+                .addComponent(submitBut)
+                .addGap(53, 53, 53)
                 .addComponent(jButtonClose)
-                .addGap(26, 26, 26))
+                .addGap(31, 31, 31))
         );
 
         jPanel2.setBackground(new java.awt.Color(102, 102, 102));
@@ -462,9 +397,6 @@ public class GameClientFrm extends javax.swing.JFrame {
             .addComponent(roomNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
-        scoreLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        scoreLabel.setText("Tỉ số:  0-0");
-
         jPanel6.setBackground(new java.awt.Color(102, 102, 102));
 
         playerButtonImage.setBackground(new java.awt.Color(102, 102, 102));
@@ -486,7 +418,7 @@ public class GameClientFrm extends javax.swing.JFrame {
                         .addComponent(vsIcon, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
                         .addComponent(playerButtonImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(competotorButtonImage, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -541,12 +473,7 @@ public class GameClientFrm extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(96, 96, 96)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(scoreLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(6, 6, 6)
-                                        .addComponent(countDownLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -597,14 +524,8 @@ public class GameClientFrm extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(11, 11, 11)
-                        .addComponent(scoreLabel)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(countDownLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel7)
+                .addGap(61, 61, 61)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 31, Short.MAX_VALUE))
             .addComponent(gamePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -724,22 +645,14 @@ public class GameClientFrm extends javax.swing.JFrame {
         }
     }
 
-    public void stopTimer() {
-        timer.stop();
-    }
 
-    public void startTimer() {
-        countDownLabel.setVisible(true);
-        second = 60;
-        minute = 0;
-        timer.start();
-    }
+
 
     public void increaseWinMatchToUser() {
         Client.user.setNumberOfWin(Client.user.getNumberOfWin() + 1);
         playerNumberOfWinValue.setText("" + Client.user.getNumberOfWin());
         userWin++;
-        scoreLabel.setText("Tỉ số: " + userWin + "-" + competitorWin);
+       
         String tmp = messageTextArea.getText();
         tmp += "--Bạn đã thắng, tỉ số hiện tại là " + userWin + "-" + competitorWin + "--\n";
         messageTextArea.setText(tmp);
@@ -750,7 +663,7 @@ public class GameClientFrm extends javax.swing.JFrame {
         competitor.setNumberOfWin(competitor.getNumberOfWin() + 1);
         competitorNumberOfWinValue.setText("" + competitor.getNumberOfWin());
         competitorWin++;
-        scoreLabel.setText("Tỉ số: " + userWin + "-" + competitorWin);
+       
         String tmp = messageTextArea.getText();
         tmp += "--Bạn đã thua, tỉ số hiện tại là " + userWin + "-" + competitorWin + "--\n";
         messageTextArea.setText(tmp);
@@ -767,8 +680,8 @@ public class GameClientFrm extends javax.swing.JFrame {
     public void newgame() {
 
         if (numberOfMatch % 2 == 0) {
-            startTimer();
-            countDownLabel.setVisible(true);
+//            startTimer();
+//            countDownLabel.setVisible(true);
         }
         numberOfMatch++;
     }
@@ -796,7 +709,6 @@ public class GameClientFrm extends javax.swing.JFrame {
     private javax.swing.JButton competotorButtonImage;
     private javax.swing.JLabel competotorNumberOfGameLabel;
     private javax.swing.JLabel competotorNumberOfGameValue;
-    private javax.swing.JLabel countDownLabel;
     private javax.swing.JPanel gamePanel;
     private javax.swing.JPanel imagePanel;
     private javax.swing.JButton jButtonClose;
@@ -821,7 +733,6 @@ public class GameClientFrm extends javax.swing.JFrame {
     private javax.swing.JLabel playerNumberOfWinLabel;
     private javax.swing.JLabel playerNumberOfWinValue;
     private javax.swing.JLabel roomNameLabel;
-    private javax.swing.JLabel scoreLabel;
     private javax.swing.JButton submitBut;
     private javax.swing.JLabel vsIcon;
     // End of variables declaration//GEN-END:variables

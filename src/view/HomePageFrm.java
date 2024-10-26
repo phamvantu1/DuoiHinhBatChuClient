@@ -33,6 +33,7 @@ public class HomePageFrm extends javax.swing.JFrame {
      */
     private JButton btnShowOnlineUsers;
     private OnlineUsersFrame onlineUsersFrame;
+    private ViewHistoryFrm viewHistoryFrm;
     
     public HomePageFrm() {
         initComponents();
@@ -54,8 +55,7 @@ public class HomePageFrm extends javax.swing.JFrame {
         }
         drawValue.setText("" + Client.user.getNumberOfDraw());
         markValue.setText("" + (Client.user.getScore()));
-        rankValue.setText("" + Client.user.getRank());
-    
+       
         setVisible(true); // Hiển thị giao diện
           
     }
@@ -83,8 +83,6 @@ public class HomePageFrm extends javax.swing.JFrame {
         numberOfGameLabel = new javax.swing.JLabel();
         markLabel = new javax.swing.JLabel();
         markValue = new javax.swing.JLabel();
-        rankLabel = new javax.swing.JLabel();
-        rankValue = new javax.swing.JLabel();
         winRatioLabel = new javax.swing.JLabel();
         winRatioValue = new javax.swing.JLabel();
         drawLabel = new javax.swing.JLabel();
@@ -92,7 +90,6 @@ public class HomePageFrm extends javax.swing.JFrame {
         logoutButton = new javax.swing.JButton();
         exitGameButton = new javax.swing.JButton();
         quickGameButton = new javax.swing.JButton();
-        playWithBotButton = new javax.swing.JButton();
         friendListButton = new javax.swing.JButton();
         goRoomButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -101,6 +98,7 @@ public class HomePageFrm extends javax.swing.JFrame {
         sendMessageButton = new javax.swing.JButton();
         statusButton = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
+        jButtonHistory = new javax.swing.JButton();
 
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
         jLayeredPane1.setLayout(jLayeredPane1Layout);
@@ -177,12 +175,6 @@ public class HomePageFrm extends javax.swing.JFrame {
         markValue.setForeground(new java.awt.Color(255, 255, 255));
         markValue.setText("{day la diem}");
 
-        rankLabel.setForeground(new java.awt.Color(255, 255, 255));
-        rankLabel.setText("Thứ hạng");
-
-        rankValue.setForeground(new java.awt.Color(255, 255, 255));
-        rankValue.setText("{day la thu hang}");
-
         winRatioLabel.setForeground(new java.awt.Color(255, 255, 255));
         winRatioLabel.setText("Tỉ lệ thắng");
 
@@ -218,15 +210,13 @@ public class HomePageFrm extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(drawLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
                             .addComponent(markLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(winRatioLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(rankLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(winRatioLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(36, 36, 36)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(markValue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(winRatioValue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(rankValue, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(drawValue, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
                                 .addGap(0, 24, Short.MAX_VALUE)))))
                 .addContainerGap())
@@ -262,15 +252,11 @@ public class HomePageFrm extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(markValue)
-                            .addComponent(markLabel))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(rankLabel)
-                            .addComponent(rankValue)))
+                            .addComponent(markLabel)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(11, 11, 11)
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         logoutButton.setBackground(new java.awt.Color(255, 102, 51));
@@ -294,14 +280,6 @@ public class HomePageFrm extends javax.swing.JFrame {
         quickGameButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 quickGameButtonActionPerformed(evt);
-            }
-        });
-
-        playWithBotButton.setBackground(new java.awt.Color(102, 255, 255));
-        playWithBotButton.setText("Chơi với máy");
-        playWithBotButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                playWithBotButtonActionPerformed(evt);
             }
         });
 
@@ -360,6 +338,14 @@ public class HomePageFrm extends javax.swing.JFrame {
             }
         });
 
+        jButtonHistory.setBackground(new java.awt.Color(102, 255, 255));
+        jButtonHistory.setText("Xem lịch sử");
+        jButtonHistory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonHistoryActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -389,8 +375,8 @@ public class HomePageFrm extends javax.swing.JFrame {
                                     .addComponent(findRoomButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(playWithBotButton, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
-                                    .addComponent(statusButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addComponent(statusButton, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
+                                    .addComponent(jButtonHistory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(friendListButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -418,8 +404,8 @@ public class HomePageFrm extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(findRoomButton)
-                    .addComponent(playWithBotButton)
-                    .addComponent(friendListButton))
+                    .addComponent(friendListButton)
+                    .addComponent(jButtonHistory))
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(scoreBoardButton)
@@ -433,23 +419,7 @@ public class HomePageFrm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-//    // Hàm mở giao diện hiển thị người dùng online
-//    private void openOnlineUsersFrame() {
-//        if (onlineUsersFrame == null || !onlineUsersFrame.isVisible()) {
-//            onlineUsersFrame = new OnlineUsersFrame();
-//            onlineUsersFrame.setVisible(true);
-//        } else {
-//            onlineUsersFrame.toFront();  // Đưa giao diện về phía trước nếu đã mở
-//        }
-//    }
-//
-//    public void updateOnlineUsers(List<String> onlineUsers) {
-//        if (onlineUsersFrame != null) {
-//            onlineUsersFrame.updateOnlineUsers(onlineUsers);  // Cập nhật danh sách người dùng online
-//        }
-//    }
-     // Hàm mở giao diện hiển thị người dùng online
-      // Hàm mở giao diện hiển thị người dùng online
+
     private void openOnlineUsersFrame() {
         onlineUsersFrame.setVisible(true);
     }
@@ -518,11 +488,6 @@ public class HomePageFrm extends javax.swing.JFrame {
         Client.openView(Client.View.FIND_ROOM);
     }//GEN-LAST:event_quickGameButtonActionPerformed
 
-    private void playWithBotButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playWithBotButtonActionPerformed
-        // TODO add your handling code here:
-        Client.openView(Client.View.GAME_AI);
-    }//GEN-LAST:event_playWithBotButtonActionPerformed
-
     private void goRoomButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goRoomButtonActionPerformed
         Client.openView(Client.View.ROOM_NAME_FRM);
     }//GEN-LAST:event_goRoomButtonActionPerformed
@@ -549,6 +514,15 @@ public class HomePageFrm extends javax.swing.JFrame {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jButtonHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonHistoryActionPerformed
+        try {
+            Client.socketHandle.write("view-history,");
+        } catch (IOException ex) {
+            Logger.getLogger(HomePageFrm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_jButtonHistoryActionPerformed
 
     private void sendMessage() {
         try {
@@ -581,6 +555,7 @@ public class HomePageFrm extends javax.swing.JFrame {
     private javax.swing.JButton findRoomButton;
     private javax.swing.JButton friendListButton;
     private javax.swing.JButton goRoomButton;
+    private javax.swing.JButton jButtonHistory;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel8;
@@ -597,10 +572,7 @@ public class HomePageFrm extends javax.swing.JFrame {
     private javax.swing.JLabel numberOfGameValue;
     private javax.swing.JLabel numberOfWinLabel;
     private javax.swing.JLabel numberOfWinValue;
-    private javax.swing.JButton playWithBotButton;
     private javax.swing.JButton quickGameButton;
-    private javax.swing.JLabel rankLabel;
-    private javax.swing.JLabel rankValue;
     private javax.swing.JButton scoreBoardButton;
     private javax.swing.JButton sendMessageButton;
     private javax.swing.JButton statusButton;
