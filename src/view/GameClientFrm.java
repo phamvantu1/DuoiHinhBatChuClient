@@ -600,14 +600,14 @@ public class GameClientFrm extends javax.swing.JFrame {
         // Mảng chứa đường dẫn đến 11 ảnh
         // Mảng chứa đường dẫn đến 11 ảnh và câu trả lời tương ứng
         String[][] imagesWithAnswers = {
-                {"assets/dhbc/anh2.gif", "1"},
-                {"assets/dhbc/anh3.gif", "1"},
-                {"assets/dhbc/anh4.gif", "1"},
-                {"assets/dhbc/anh5.gif", "1"},
-                {"assets/dhbc/anh6.gif", "1"},
-                {"assets/dhbc/anh7.gif", "1"},
-                {"assets/dhbc/anh8.gif", "1"},
-                {"assets/dhbc/anh9.gif", "1"}
+                {"assets/dhbc/anh2.gif", "dong_tien"},
+                {"assets/dhbc/anh3.gif", "con_voi"},
+                {"assets/dhbc/anh4.gif", "dau_cong"},
+                {"assets/dhbc/anh5.gif", "con_ngua"},
+                {"assets/dhbc/anh6.gif", "con_co"},
+                {"assets/dhbc/anh7.gif", "ba_ba"},
+                {"assets/dhbc/anh8.gif", "nha_tu"},
+                {"assets/dhbc/anh9.gif", "con_nguoi"}
         };
 
         // Tạo đối tượng Random để chọn ngẫu nhiên
@@ -667,6 +667,11 @@ public class GameClientFrm extends javax.swing.JFrame {
     private int correctAnswerCount = 0;
     private int questionCount = 0;
 
+    public void resetCountAnswerCorrect(){
+        correctAnswerCount  = 0;
+        questionCount = 0;
+    }
+    
     private void submitButActionPerformed(java.awt.event.ActionEvent evt) {
         // Lấy đáp án từ JTextField
         String userAnswer = answerField.getText();
