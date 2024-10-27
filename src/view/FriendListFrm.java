@@ -196,7 +196,7 @@ public class FriendListFrm extends javax.swing.JFrame {
 
     private void closeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeButtonActionPerformed
         Client.closeView(Client.View.FRIEND_LIST);
-//        Client.openView(Client.View.HOMEPAGE);
+        Client.openView(Client.View.HOMEPAGE);
     }//GEN-LAST:event_closeButtonActionPerformed
 
     private void friendTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_friendTableMouseClicked
