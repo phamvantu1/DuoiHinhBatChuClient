@@ -53,7 +53,7 @@ public class SocketHandle implements Runnable {
 
     public List<User> getListRank(String[] message) {
         List<User> friend = new ArrayList<>();
-        for (int i = 1; i < message.length; i = i + 9) {
+        for (int i = 1; i < message.length; i = i + 10) {
             friend.add(new User(Integer.parseInt(message[i]),
                     message[i + 1],
                     message[i + 2],
