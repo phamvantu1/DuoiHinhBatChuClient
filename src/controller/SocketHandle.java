@@ -393,6 +393,28 @@ public class SocketHandle implements Runnable {
                     if (messageSplit.length == 3)
                         Client.waitingRoomFrm.setRoomPassword("Mật khẩu phòng: " + messageSplit[2]);
                 }
+
+                if (messageSplit[0].equals("competitor-accept")) {
+
+                    int mesID = Integer.parseInt(messageSplit[1]);
+                    if (mesID != Client.user.getID())
+                    {
+                        Client.closeAllViews();
+                    }
+                }
+
+
+                if (messageSplit[0].equals("invite-notice")) {
+
+                    int mesID = Integer.parseInt(messageSplit[1]);
+
+                    if (mesID != Client.user.getID())
+                    {
+                        System.out.println("ban nhan duoc loi moi choi tu   " + mesID);
+                        Client.homePageFrm.showAskToPlay();
+                    }
+                }
+
                 //Xử lý yêu cầu kết bạn tới
                 if (messageSplit[0].equals("make-friend-request")) {
                     int ID = Integer.parseInt(messageSplit[1]);

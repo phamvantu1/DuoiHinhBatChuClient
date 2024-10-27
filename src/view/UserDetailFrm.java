@@ -6,6 +6,9 @@ package view;
 
 import controller.Client;
 import static controller.Client.user;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import model.User;
 
@@ -213,7 +216,14 @@ public class UserDetailFrm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCloseActionPerformed
 
     private void jButtonInviteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInviteActionPerformed
-        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            Client.socketHandle.write("send-invite," +  Client.user.getID() );
+            System.out.println("nguoi  gui loi moi la " +  Client.user.getID());
+        } catch (IOException ex) {
+            Logger.getLogger(UserDetailFrm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.dispose();
     }//GEN-LAST:event_jButtonInviteActionPerformed
 
     /**

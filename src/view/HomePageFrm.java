@@ -34,6 +34,25 @@ public class HomePageFrm extends javax.swing.JFrame {
     private JButton btnShowOnlineUsers;
     private OnlineUsersFrame onlineUsersFrame;
     private ViewHistoryFrm viewHistoryFrm;
+
+    public void showAskToPlay() {
+
+        // Hiển thị hộp thoại xác nhận
+        int choice = JOptionPane.showConfirmDialog(this,
+                "Bạn có đồng ý lời mời không ?",
+                "Chấp nhận?",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE);
+
+        // Xử lý dựa trên lựa chọn của người dùng
+        if (choice == JOptionPane.YES_OPTION) {
+            try {
+                Client.socketHandle.write("accept-invite," + Client.user.getID());
+            } catch (IOException ex) {
+                Logger.getLogger(HomePageFrm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
     
     public HomePageFrm() {
         initComponents();
