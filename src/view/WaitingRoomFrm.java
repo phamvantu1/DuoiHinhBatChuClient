@@ -147,7 +147,7 @@ public class WaitingRoomFrm extends javax.swing.JFrame {
         if (isOpenning) return;
         try {
             Client.closeView(Client.View.WAITING_ROOM);
-//            Client.openView(Client.View.HOMEPAGE);
+            Client.openView(Client.View.HOMEPAGE);
             Client.socketHandle.write("cancel-room,");
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage());
