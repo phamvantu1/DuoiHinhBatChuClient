@@ -404,6 +404,24 @@ public class SocketHandle implements Runnable {
                 }
 
 
+
+
+                if (messageSplit[0].equals("accept-to-answer")) {
+
+                    int mesID = Integer.parseInt(messageSplit[1]);
+                    if (mesID == Client.user.getID())
+                    {
+                        Client.gameClientFrm.setSubmitAllowed(true);
+                        Client.gameClientFrm.showPermission();
+                    }
+                    else
+                    {
+                        Client.gameClientFrm.setSubmitAllowed(false);
+                        Client.gameClientFrm.showNotPermission();
+                    }
+                }
+
+
                 if (messageSplit[0].equals("invite-notice")) {
 
                     int mesID = Integer.parseInt(messageSplit[1]);

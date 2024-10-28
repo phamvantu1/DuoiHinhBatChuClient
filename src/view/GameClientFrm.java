@@ -54,6 +54,8 @@ public class GameClientFrm extends javax.swing.JFrame {
     private int competitorWin;
     private final String competitorIP;
     private JDialog currentDialog = null;
+
+    private boolean isSubmitAllowed = false;
     
         // Phương thức hiển thị thông báo và đóng hộp thoại cũ nếu có
     public void showMessage(String message, String title, int messageType) {
@@ -83,7 +85,15 @@ public class GameClientFrm extends javax.swing.JFrame {
         Client.openView(Client.View.HOMEPAGE);
     }
     }
+          public void showPermission() {
+        JOptionPane.showMessageDialog(this, "Ban co quyen tra loi", "co quyen tra loi", JOptionPane.INFORMATION_MESSAGE);
+         
+    }
      
+          public void showNotPermission() {
+        JOptionPane.showMessageDialog(this, "Ban khong co quyen tra loi", "Khong co quyen tra loi", JOptionPane.INFORMATION_MESSAGE);
+         
+    }
          public void showLoserMessage() {
         JOptionPane.showMessageDialog(this, "Hix ! Thua rồi , + 0 điểm !", "Thua", JOptionPane.INFORMATION_MESSAGE);
          // Hiển thị hộp thoại xác nhận
@@ -215,6 +225,7 @@ public class GameClientFrm extends javax.swing.JFrame {
         submitBut = new javax.swing.JButton();
         jButtonClose = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jButtonWantToAnswer = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         playerLabel = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
@@ -350,40 +361,54 @@ public class GameClientFrm extends javax.swing.JFrame {
             }
         });
 
+        jButtonWantToAnswer.setText("Tôi muốn trả lời");
+        jButtonWantToAnswer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonWantToAnswerActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout gamePanelLayout = new javax.swing.GroupLayout(gamePanel);
         gamePanel.setLayout(gamePanelLayout);
         gamePanelLayout.setHorizontalGroup(
             gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(gamePanelLayout.createSequentialGroup()
+                .addGap(96, 96, 96)
+                .addComponent(jButtonClose)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(57, 57, 57))
             .addGroup(gamePanelLayout.createSequentialGroup()
                 .addGroup(gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(gamePanelLayout.createSequentialGroup()
                         .addGap(21, 21, 21)
                         .addComponent(imagePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(gamePanelLayout.createSequentialGroup()
-                        .addGap(133, 133, 133)
-                        .addGroup(gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(answerField, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(gamePanelLayout.createSequentialGroup()
-                                .addGap(53, 53, 53)
-                                .addComponent(submitBut)))))
+                        .addGap(143, 143, 143)
+                        .addComponent(answerField, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(gamePanelLayout.createSequentialGroup()
-                .addGap(66, 66, 66)
-                .addComponent(jButtonClose)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(57, 57, 57))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, gamePanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, gamePanelLayout.createSequentialGroup()
+                        .addComponent(jButtonWantToAnswer)
+                        .addGap(128, 128, 128))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, gamePanelLayout.createSequentialGroup()
+                        .addComponent(submitBut)
+                        .addGap(151, 151, 151))))
         );
         gamePanelLayout.setVerticalGroup(
             gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(gamePanelLayout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addComponent(imagePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addComponent(answerField, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
+                .addGap(24, 24, 24)
+                .addComponent(jButtonWantToAnswer)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(submitBut)
-                .addGap(42, 42, 42)
+                .addGap(18, 18, 18)
                 .addGroup(gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonClose)
                     .addComponent(jButton1))
@@ -662,6 +687,16 @@ public class GameClientFrm extends javax.swing.JFrame {
         Client.homePageFrm.dispose();
         Client.openView(Client.View.HOMEPAGE);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButtonWantToAnswerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonWantToAnswerActionPerformed
+        try {
+            // TODO add your handling code here:
+
+            Client.socketHandle.write("want-to-answer," + Client.user.getID());
+        } catch (IOException ex) {
+            Logger.getLogger(GameClientFrm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButtonWantToAnswerActionPerformed
     
     private String correctAnswer;
     private int correctAnswerCount = 0;
@@ -671,8 +706,20 @@ public class GameClientFrm extends javax.swing.JFrame {
         correctAnswerCount  = 0;
         questionCount = 0;
     }
+
+    public void setSubmitAllowed(boolean allowed) {
+        isSubmitAllowed = allowed;
+        submitBut.setEnabled(allowed); // Optionally enable/disable the button
+    }
     
     private void submitButActionPerformed(java.awt.event.ActionEvent evt) {
+
+        if (!isSubmitAllowed) {
+            System.out.println("Ban khong co quyen tra loi ");
+            return;
+        }
+      
+
         // Lấy đáp án từ JTextField
         String userAnswer = answerField.getText();
 
@@ -766,6 +813,7 @@ public class GameClientFrm extends javax.swing.JFrame {
     private javax.swing.JPanel imagePanel;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonClose;
+    private javax.swing.JButton jButtonWantToAnswer;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JFrame jFrame2;
     private javax.swing.JFrame jFrame3;
