@@ -55,8 +55,9 @@ public class RankFrm extends javax.swing.JFrame {
         int i = 0;
         for (User user : listUserStatics) {
             tableModel.addRow(new Object[]{
-                    i + 1,
+                    
                     user.getNickname(),
+                    Client.user.getScore(),
                     new ImageIcon("assets/icon/" + rankSrc.get(i) + ".png")
             });
             i++;
